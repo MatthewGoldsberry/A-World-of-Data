@@ -1,6 +1,6 @@
 """Script to pull from Our World in Data datasets in .csv files."""
 
-import pandas as pd  # ty:ignore[unresolved-import]
+import pandas as pd
 
 if __name__ == "__main__":
     """Basic script to take 'Our World in Data' data url to csv file."""
