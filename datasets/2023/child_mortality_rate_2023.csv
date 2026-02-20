@@ -1,0 +1,184 @@
+entity,code,year,child_mortality_rate
+Afghanistan,AFG,2023,5.55
+Albania,ALB,2023,0.94
+Algeria,DZA,2023,2.2
+Andorra,AND,2023,0.26
+Antigua and Barbuda,ATG,2023,0.93
+Armenia,ARM,2023,1.0
+Australia,AUS,2023,0.37
+Austria,AUT,2023,0.31
+Azerbaijan,AZE,2023,1.86
+Bahrain,BHR,2023,0.86
+Bangladesh,BGD,2023,3.06
+Barbados,BRB,2023,1.0
+Belarus,BLR,2023,0.24
+Belgium,BEL,2023,0.36
+Belize,BLZ,2023,1.27
+Benin,BEN,2023,7.79
+Bhutan,BTN,2023,2.31
+Bolivia,BOL,2023,2.31
+Botswana,BWA,2023,3.96
+Brazil,BRA,2023,1.44
+Brunei,BRN,2023,0.94
+Bulgaria,BGR,2023,0.61
+Burkina Faso,BFA,2023,7.73
+Burundi,BDI,2023,4.92
+Cambodia,KHM,2023,2.29
+Cameroon,CMR,2023,6.72
+Canada,CAN,2023,0.51
+Cape Verde,CPV,2023,1.16
+Central African Republic,CAF,2023,9.22
+Chad,TCD,2023,10.11
+Chile,CHL,2023,0.72
+China,CHN,2023,0.62
+Colombia,COL,2023,1.2
+Comoros,COM,2023,3.98
+Cook Islands,COK,2023,1.36
+Costa Rica,CRI,2023,1.05
+Cote d'Ivoire,CIV,2023,6.71
+Cuba,CUB,2023,0.83
+Cyprus,CYP,2023,0.35
+Czechia,CZE,2023,0.26
+Democratic Republic of Congo,COD,2023,7.32
+Denmark,DNK,2023,0.34
+Djibouti,DJI,2023,5.04
+Dominican Republic,DOM,2023,3.14
+East Timor,TLS,2023,5.0
+Ecuador,ECU,2023,1.31
+Egypt,EGY,2023,1.75
+El Salvador,SLV,2023,1.04
+Estonia,EST,2023,0.21
+Eswatini,SWZ,2023,4.5
+Ethiopia,ETH,2023,4.65
+Fiji,FJI,2023,2.91
+Finland,FIN,2023,0.23
+France,FRA,2023,0.43
+Gabon,GAB,2023,3.32
+Gambia,GMB,2023,4.41
+Georgia,GEO,2023,0.92
+Germany,DEU,2023,0.37
+Ghana,GHA,2023,3.71
+Greece,GRC,2023,0.37
+Grenada,GRD,2023,1.83
+Guatemala,GTM,2023,2.14
+Guinea,GIN,2023,9.5
+Guinea-Bissau,GNB,2023,6.93
+Guyana,GUY,2023,2.57
+Haiti,HTI,2023,5.51
+Honduras,HND,2023,1.55
+Hungary,HUN,2023,0.38
+Iceland,ISL,2023,0.26
+India,IND,2023,2.77
+Indonesia,IDN,2023,2.06
+Iran,IRN,2023,1.18
+Iraq,IRQ,2023,2.26
+Ireland,IRL,2023,0.38
+Israel,ISR,2023,0.34
+Italy,ITA,2023,0.28
+Jamaica,JAM,2023,1.93
+Japan,JPN,2023,0.24
+Jordan,JOR,2023,1.32
+Kazakhstan,KAZ,2023,0.96
+Kenya,KEN,2023,3.99
+Kiribati,KIR,2023,5.51
+Kuwait,KWT,2023,0.88
+Kyrgyzstan,KGZ,2023,1.7
+Laos,LAO,2023,3.9
+Latvia,LVA,2023,0.3
+Lebanon,LBN,2023,1.83
+Lesotho,LSO,2023,5.89
+Liberia,LBR,2023,7.29
+Libya,LBY,2023,3.08
+Lithuania,LTU,2023,0.34
+Luxembourg,LUX,2023,0.23
+Madagascar,MDG,2023,6.48
+Malawi,MWI,2023,3.83
+Malaysia,MYS,2023,0.81
+Maldives,MDV,2023,0.57
+Mali,MLI,2023,9.13
+Malta,MLT,2023,0.55
+Marshall Islands,MHL,2023,2.82
+Mauritania,MRT,2023,3.78
+Mauritius,MUS,2023,1.52
+Mexico,MEX,2023,1.25
+Moldova,MDA,2023,1.47
+Monaco,MCO,2023,0.27
+Mongolia,MNG,2023,1.36
+Montenegro,MNE,2023,0.26
+Montserrat,MSR,2023,0.65
+Morocco,MAR,2023,1.66
+Mozambique,MOZ,2023,6.17
+Myanmar,MMR,2023,3.87
+Namibia,NAM,2023,4.07
+Nauru,NRU,2023,0.89
+Nepal,NPL,2023,2.65
+Netherlands,NLD,2023,0.4
+New Zealand,NZL,2023,0.47
+Niger,NER,2023,11.48
+Nigeria,NGA,2023,10.49
+Niue,NIU,2023,2.43
+North Korea,PRK,2023,1.8
+North Macedonia,MKD,2023,0.33
+Norway,NOR,2023,0.24
+Oman,OMN,2023,1.04
+Pakistan,PAK,2023,5.85
+Palau,PLW,2023,2.23
+Palestine,PSE,2023,2.63
+Panama,PAN,2023,1.33
+Papua New Guinea,PNG,2023,4.03
+Paraguay,PRY,2023,1.7
+Peru,PER,2023,1.58
+Philippines,PHL,2023,2.69
+Poland,POL,2023,0.44
+Portugal,PRT,2023,0.32
+Qatar,QAT,2023,0.6
+Romania,ROU,2023,0.66
+Russia,RUS,2023,0.45
+Rwanda,RWA,2023,4.0
+Samoa,WSM,2023,1.57
+San Marino,SMR,2023,0.14
+Sao Tome and Principe,STP,2023,1.39
+Saudi Arabia,SAU,2023,0.62
+Senegal,SEN,2023,3.85
+Serbia,SRB,2023,0.52
+Seychelles,SYC,2023,1.43
+Sierra Leone,SLE,2023,9.43
+Singapore,SGP,2023,0.21
+Slovakia,SVK,2023,0.61
+Slovenia,SVN,2023,0.22
+Solomon Islands,SLB,2023,2.06
+Somalia,SOM,2023,10.4
+South Africa,ZAF,2023,3.47
+South Korea,KOR,2023,0.28
+South Sudan,SSD,2023,9.87
+Spain,ESP,2023,0.31
+Sri Lanka,LKA,2023,0.61
+Sudan,SDN,2023,5.01
+Suriname,SUR,2023,1.62
+Sweden,SWE,2023,0.25
+Switzerland,CHE,2023,0.39
+Syria,SYR,2023,2.06
+Tajikistan,TJK,2023,2.73
+Tanzania,TZA,2023,3.89
+Thailand,THA,2023,0.92
+Togo,TGO,2023,5.83
+Tonga,TON,2023,0.99
+Trinidad and Tobago,TTO,2023,1.91
+Tunisia,TUN,2023,1.29
+Turkey,TUR,2023,1.28
+Turkmenistan,TKM,2023,4.0
+Turks and Caicos Islands,TCA,2023,0.56
+Tuvalu,TUV,2023,1.99
+Uganda,UGA,2023,3.88
+Ukraine,UKR,2023,0.81
+United Arab Emirates,ARE,2023,0.5
+United Kingdom,GBR,2023,0.45
+United States,USA,2023,0.65
+Uruguay,URY,2023,0.67
+Uzbekistan,UZB,2023,1.33
+Vanuatu,VUT,2023,1.68
+Venezuela,VEN,2023,2.43
+Vietnam,VNM,2023,2.0
+Yemen,YEM,2023,3.93
+Zambia,ZMB,2023,4.47
+Zimbabwe,ZWE,2023,4.42
