@@ -8,7 +8,7 @@ import pandas as pd
 from pycountry import countries
 
 BASE_PATH = Path("prepro")
-PROCESSED_PATH = BASE_PATH / "processed_csvs"
+PROCESSED_PATH = Path("datasets")
 
 COUNTRY_CODES = {c.alpha_3 for c in countries}
 
@@ -160,8 +160,8 @@ if __name__ == "__main__":
             common_keys,
         )
 
-        filtered_df1.to_csv(BASE_PATH / "processed_csvs" / file1.name, index=False)
-        filtered_df2.to_csv(BASE_PATH / "processed_csvs" / file2.name, index=False)
+        filtered_df1.to_csv(PROCESSED_PATH / file1.name, index=False)
+        filtered_df2.to_csv(PROCESSED_PATH / file2.name, index=False)
 
         timestamp = datetime.now().strftime(  # noqa: DTZ005
             "%Y-%m-%d_%H-%M-%S",
