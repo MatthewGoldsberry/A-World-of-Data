@@ -7,8 +7,9 @@ from typing import Any
 import pandas as pd
 from pycountry import countries
 
+from . import PROCESSED_PATH
+
 BASE_PATH = Path("prepro")
-PROCESSED_PATH = Path("datasets")
 
 COUNTRY_CODES = {c.alpha_3 for c in countries}
 

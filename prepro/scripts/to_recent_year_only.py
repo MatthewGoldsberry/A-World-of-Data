@@ -1,12 +1,9 @@
 """Script to create datasets with only the most recent year include."""
 
-from pathlib import Path
-
 import pandas as pd
 
+from . import PROCESSED_PATH
 from .intersect_of_datasets import get_columns
-
-PROCESSED_PATH = Path("datasets")
 
 if __name__ == "__main__":
     """Takes all files in datasets/*.csv and compresses rows down to only those with
