@@ -23,6 +23,5 @@
   "autoDocstring.docstringFormat": "google",
   
   // Tell VS Code to look for the virtual environment created by 'uv'
-  "python.analysis.extraPaths": ["./prepro/.venv/lib/python*/site-packages"],
-  "python.defaultInterpreterPath": "${workspaceFolder}/prepro/.venv/bin/python"
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe"
 }
