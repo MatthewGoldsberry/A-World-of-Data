@@ -1,0 +1,28 @@
+{
+  // --- General Editor Settings ---
+  "editor.formatOnSave": true,
+  "python.terminal.activateEnvironment": true,
+
+  // --- Python Specific Configuration ---
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.ruff": "always",
+      "source.organizeImports.ruff": "always"
+    }
+  },
+
+  // --- Markdown Specific Configuration ---
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.renderWhitespace": "all"
+  },
+
+  // --- Extension Specific Settings ---
+  "autoDocstring.docstringFormat": "google",
+  
+  // Tell VS Code to look for the virtual environment created by 'uv'
+  "python.analysis.extraPaths": ["./prepro/.venv/lib/python*/site-packages"],
+  "python.defaultInterpreterPath": "${workspaceFolder}/prepro/.venv/bin/python"
+}
