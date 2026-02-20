@@ -1792,30 +1792,6 @@ Haiti,HTI,2020,28.65762
 Haiti,HTI,2021,28.793303
 Haiti,HTI,2022,28.913301
 Haiti,HTI,2023,29.018084
-High-income countries,OWID_HIC,2000,97.410736
-High-income countries,OWID_HIC,2001,96.862526
-High-income countries,OWID_HIC,2002,95.969025
-High-income countries,OWID_HIC,2003,96.02198
-High-income countries,OWID_HIC,2004,96.0808
-High-income countries,OWID_HIC,2005,96.169365
-High-income countries,OWID_HIC,2006,96.2466
-High-income countries,OWID_HIC,2007,96.38369
-High-income countries,OWID_HIC,2008,96.51713
-High-income countries,OWID_HIC,2009,96.64534
-High-income countries,OWID_HIC,2010,96.77167
-High-income countries,OWID_HIC,2011,96.891914
-High-income countries,OWID_HIC,2012,97.00988
-High-income countries,OWID_HIC,2013,97.32388
-High-income countries,OWID_HIC,2014,97.42905
-High-income countries,OWID_HIC,2015,97.536674
-High-income countries,OWID_HIC,2016,97.643364
-High-income countries,OWID_HIC,2017,97.73979
-High-income countries,OWID_HIC,2018,97.824394
-High-income countries,OWID_HIC,2019,97.90719
-High-income countries,OWID_HIC,2020,97.98287
-High-income countries,OWID_HIC,2021,98.07327
-High-income countries,OWID_HIC,2022,98.16778
-High-income countries,OWID_HIC,2023,98.25133
 Honduras,HND,2000,64.5086
 Honduras,HND,2001,65.509926
 Honduras,HND,2002,66.53485
@@ -2416,30 +2392,6 @@ Lithuania,LTU,2020,94.786285
 Lithuania,LTU,2021,95.34144
 Lithuania,LTU,2022,95.89405
 Lithuania,LTU,2023,96.38484
-Low-income countries,OWID_LIC,2000,21.944324
-Low-income countries,OWID_LIC,2001,22.118507
-Low-income countries,OWID_LIC,2002,23.085075
-Low-income countries,OWID_LIC,2003,23.349173
-Low-income countries,OWID_LIC,2004,23.632023
-Low-income countries,OWID_LIC,2005,24.127022
-Low-income countries,OWID_LIC,2006,24.680279
-Low-income countries,OWID_LIC,2007,25.305986
-Low-income countries,OWID_LIC,2008,25.909817
-Low-income countries,OWID_LIC,2009,26.47551
-Low-income countries,OWID_LIC,2010,27.064312
-Low-income countries,OWID_LIC,2011,27.236698
-Low-income countries,OWID_LIC,2012,27.741264
-Low-income countries,OWID_LIC,2013,28.152525
-Low-income countries,OWID_LIC,2014,28.568306
-Low-income countries,OWID_LIC,2015,29.06802
-Low-income countries,OWID_LIC,2016,29.638182
-Low-income countries,OWID_LIC,2017,30.323982
-Low-income countries,OWID_LIC,2018,30.981808
-Low-income countries,OWID_LIC,2019,31.671587
-Low-income countries,OWID_LIC,2020,32.3286
-Low-income countries,OWID_LIC,2021,33.020805
-Low-income countries,OWID_LIC,2022,33.73278
-Low-income countries,OWID_LIC,2023,34.36147
 Luxembourg,LUX,2000,97.690186
 Luxembourg,LUX,2001,97.68317
 Luxembourg,LUX,2002,97.678246
@@ -4601,30 +4553,6 @@ Vietnam,VNM,2020,88.57441
 Vietnam,VNM,2021,90.45596
 Vietnam,VNM,2022,92.323715
 Vietnam,VNM,2023,94.08987
-World,OWID_WRL,2000,55.889515
-World,OWID_WRL,2001,56.498837
-World,OWID_WRL,2002,57.43297
-World,OWID_WRL,2003,58.521515
-World,OWID_WRL,2004,59.65659
-World,OWID_WRL,2005,60.828297
-World,OWID_WRL,2006,62.00662
-World,OWID_WRL,2007,63.208675
-World,OWID_WRL,2008,64.414604
-World,OWID_WRL,2009,65.61358
-World,OWID_WRL,2010,66.80993
-World,OWID_WRL,2011,67.91329
-World,OWID_WRL,2012,69.0999
-World,OWID_WRL,2013,70.324265
-World,OWID_WRL,2014,71.51383
-World,OWID_WRL,2015,72.70564
-World,OWID_WRL,2016,73.89035
-World,OWID_WRL,2017,75.02245
-World,OWID_WRL,2018,76.17369
-World,OWID_WRL,2019,77.31867
-World,OWID_WRL,2020,78.41932
-World,OWID_WRL,2021,79.506805
-World,OWID_WRL,2022,80.559685
-World,OWID_WRL,2023,81.36148
 Yemen,YEM,2000,43.418526
 Yemen,YEM,2001,43.716682
 Yemen,YEM,2002,44.01943
