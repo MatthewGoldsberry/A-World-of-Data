@@ -1,61 +1,49 @@
 /**
- * Load data from CSV files
+ * Helper Functions
  */
 
-// Histogram of Share of the Population Using at Least Basic Sanitation
+/**
+ * Create and render new Histogram for a specific variable and year
+ * @param {Array<Object>} data - dataset loaded from CSV
+ * @param {string} valueKey - name of column to be used for binning values
+ * @param {string} year - year used to filter data
+ * @param {Histogram} histogram - reference to histogram instance
+ * @param {string} parentElement - css selector for target SVG element
+ * @param {string} chartTitle - title of the chart
+ * @param {string} xAxisLabel - x-axis label
+ */
+function updateHistogram(data, valueKey, year, histogram, parentElement, chartTitle, xAxisLabel) {
+    // filter data based on provided year and valueKey
+    const filteredData = data.filter(d => d.year === year);
+    filteredData.forEach(d => d.value = +d[valueKey])
+
+    // initialize and render histogram
+    const config = { parentElement, chartTitle, xAxisLabel, yAxisLabel: 'Number of Countries' };
+    histogram = new Histogram(config, filteredData);
+    histogram.updateVis();
+}
+
+/**
+ * Load data from CSV files and initialize charts
+ */
+
+// chart references
 let sanitation_histogram;
-d3.csv('data/population_using_basic_sanitation.csv')
-    .then(data => {
-        // interpret year and share of population using at least basic sanitation as ints instead of strings
-        // also store the "Share of the population using at least basic sanitation" column as sanitation
-        data.forEach(d => {
-            d.Year = +d.Year
-            d.value = +d['Share of the population using at least basic sanitation']
-        });
-
-        // TODO: this is a temporary filter for ease of generating initial histograms
-        // update to be able to select years (maybe via a slider that controls both this and mortality histograms)
-        const filteredData = data.filter(d => d.Year === 2023);
-
-        // Create a new Histogram object representing sanitation data
-        const config = {
-            parentElement: '#sanitation_histogram',
-            chartTitle: 'Distribution of Countries by Usage of Basic Sanitation',
-            xAxisLabel: 'Basic Sanitation Usage (%)',
-            yAxisLabel: 'Number of Countries',
-        }
-        sanitation_histogram = new Histogram(config, filteredData);
-
-        // update the visualization
-        sanitation_histogram.updateVis();
-    })
-    .catch(error => console.error(error));
-
 let child_mortality_histogram;
-d3.csv('data/child_mortality_rate.csv')
+
+// load dataset
+d3.csv('data/child_mortality_trends.csv')
     .then(data => {
-        // interpret year and child mortality rate as ints instead of strings
-        // also store the "child_mortality_rate" column as value
+        // interpret all points besides entity from csv as numbers instead of strings
         data.forEach(d => {
-            d.Year = +d.year
-            d.value = +d['child_mortality_rate']
+            d.year = +d.year;
+            d.child_mortality_rate = +d.child_mortality_rate;
+            d.sanitation = +d['share of the population using at least basic sanitation']
         });
 
-        // TODO: this is a temporary filter for ease of generating initial histograms
-        // update to be able to select years (maybe via a slider that controls both this and mortality histograms)
-        const filteredData = data.filter(d => d.Year === 2023);
-
-        // Create a new Histogram object representing child mortality data
-        const config = {
-            parentElement: '#child_mortality_histogram',
-            chartTitle: 'Under-Five Child Mortality Across Countries',
-            xAxisLabel: 'Child Mortality Rate (%)',
-            yAxisLabel: 'Number of Countries',
-        }
-        child_mortality_histogram = new Histogram(config, filteredData);
-
-        // update the visualization
-        child_mortality_histogram.updateVis();
+        // initialize and render histograms
+        updateHistogram(data, 'child_mortality_rate', 2023, child_mortality_histogram, '#child_mortality_histogram', 'Under-Five Child Mortality', 'Child Mortality Rate (%)');
+        updateHistogram(data, 'sanitation', 2023, sanitation_histogram, '#sanitation_histogram', 'Basic Sanitation Usage', 'Sanitation (%)');
     })
     .catch(error => console.error(error));
 
