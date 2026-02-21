@@ -55,10 +55,10 @@ class Histogram {
             .ticks(10)
             .tickSizeOuter(0);
 
-        // define size of SVG drawing area
+        // define size of SVG drawing area based on the specified SVG window 
         vis.svg = d3.select(vis.config.parentElement)
-            .attr('width', vis.config.containerWidth)
-            .attr('height', vis.config.containerHeight);
+            .attr('viewBox', `0 0 ${vis.config.containerWidth} ${vis.config.containerHeight}`)
+            .attr('preserveAspectRatio', 'xMidYMid meet');
 
         // append group element that will contain our actual chart and position it according to the given margin config
         vis.chart = vis.svg.append('g')
@@ -139,7 +139,7 @@ class Histogram {
         vis.xAxisG.call(vis.xAxis);
 
         // update y-axis with horizontal gridlines
-        vis.yAxisG 
+        vis.yAxisG
             .call(d3.axisLeft(vis.yScale)
                 .ticks(10)
                 .tickSize(-vis.width) // creates gridlines
