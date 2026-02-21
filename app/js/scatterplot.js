@@ -124,7 +124,7 @@ class Scatterplot {
             .enter()
             .append('circle')
             .attr('class', 'symbol')
-            .attr('transform', d => `translate(${vis.jitter(vis.xScale(vis.xValue(d)))}, ${vis.yScale(vis.yValue(d))})`);
+            .attr('transform', d => `translate(${vis.xScale(vis.xValue(d))}, ${vis.yScale(vis.yValue(d))})`);
 
         // update the axes and gridlines
         vis.xAxisG
@@ -132,16 +132,5 @@ class Scatterplot {
 
         vis.yAxisG
             .call(vis.yAxis);
-    }
-
-    /**
-     * Change the position slightly to better see if multiple symbols share the same coordinates
-     */
-    jitter(value) {
-        var num = Math.floor(Math.random() * 5) + 1; // this will get a number between 1 and 5;
-        num *= Math.round(Math.random()) ? 1 : -1; // this will add minus sign in 50% of cases
-        console.log(num);
-        const jittered = value + num;
-        return Math.min(100, Math.max(0, jittered)); // prevent jitter from moving points over 100%
     }
 }
