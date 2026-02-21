@@ -4,11 +4,28 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.page-header {
+    text-align: center;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.author {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-bottom: 3rem;
+}
+
 .chart-row {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     width: 100%;
+    margin-top: 1rem;
 }
 
 .chart-row svg {
@@ -20,13 +37,13 @@ body {
 /* General Chart CSS */
 
 .chart-title {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: bold;
     text-anchor: middle;
 }
 
 .axis-title {
-    font-size: 14px;
+    font-size: 0.875rem;
     text-anchor: middle;
 }
 
