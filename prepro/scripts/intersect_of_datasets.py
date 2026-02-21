@@ -80,6 +80,20 @@ def non_interesting_data_cleanse(
     return intersections_df, removed_non_intersections_df
 
 
+def drop_column_case_insensitive(df: pd.DataFrame, col_name: str) -> pd.DataFrame:
+    """Drop column from a DataFrame, ignoring case.
+
+    Args:
+        df (pd.DataFrame): DataFrame to remove column from
+        col_name (str): Name of column to remove
+
+    Returns:
+        DataFrame with column removed
+    """
+    cols_to_drop = [col for col in df.columns if col.lower() == col_name.lower()]
+    return df.drop(columns=cols_to_drop)
+
+
 def log_removals(
     removed_rows_df1: pd.DataFrame,
     removed_rows_df2: pd.DataFrame,
@@ -161,8 +175,11 @@ if __name__ == "__main__":
             common_keys,
         )
 
-        filtered_df1.to_csv(PROCESSED_PATH / file1.name, index=False)
-        filtered_df2.to_csv(PROCESSED_PATH / file2.name, index=False)
+        preprocessed_df1 = drop_column_case_insensitive(filtered_df1, "code")
+        preprocessed_df2 = drop_column_case_insensitive(filtered_df2, "code")
+
+        preprocessed_df1.to_csv(PROCESSED_PATH / file1.name, index=False)
+        preprocessed_df2.to_csv(PROCESSED_PATH / file2.name, index=False)
 
         timestamp = datetime.now().strftime(  # noqa: DTZ005
             "%Y-%m-%d_%H-%M-%S",
