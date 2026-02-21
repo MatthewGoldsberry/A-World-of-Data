@@ -106,7 +106,7 @@ class Histogram {
         // create bins for histogram
         const binGenerator = d3.bin()
             .thresholds(10)
-            .value(d => d.sanitation);
+            .value(d => d.value);
 
         vis.bins = binGenerator(vis.data);
 
