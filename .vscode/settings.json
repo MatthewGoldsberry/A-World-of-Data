@@ -2,7 +2,6 @@
   // --- General Editor Settings ---
   "editor.formatOnSave": true,
   "python.terminal.activateEnvironment": true,
-
   // --- Python Specific Configuration ---
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff",
@@ -11,17 +10,17 @@
       "source.organizeImports.ruff": "always"
     }
   },
-
   // --- Markdown Specific Configuration ---
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
     "editor.unicodeHighlight.ambiguousCharacters": false,
     "editor.renderWhitespace": "all"
   },
-
   // --- Extension Specific Settings ---
   "autoDocstring.docstringFormat": "google",
-  
   // Tell VS Code to look for the virtual environment created by 'uv'
-  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe"
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+  "cSpell.words": [
+    "Scatterplot"
+  ]
 }

@@ -24,6 +24,7 @@ body {
     display: flex;
     justify-content: center;
     width: 100%;
+    margin: 1rem;
 }
 
 .chart-row {
@@ -33,6 +34,12 @@ body {
 }
 
 .chart-row svg {
+    flex: 0 0 100%;
+    height: 400px;
+    display: block;
+}
+
+.chart-row.two-charts svg {
     flex: 0 0 45%;
     height: 400px;
     max-width: 45%;
@@ -60,4 +67,16 @@ body {
 
 .bar:hover {
     fill: darkorange
+}
+
+/* Scatterplot Specific CSS */
+
+.symbol {
+    r: 4;
+    fill: steelblue;
+}
+
+.symbol:hover {
+    r: 6;
+    fill: darkorange;
 }

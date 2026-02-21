@@ -1,18 +1,15 @@
 /**
- * Histogram object class 
+ * Scatterplot object class 
  */
-class Histogram {
+class Scatterplot {
 
     /**
-     * Class constructor with basic histogram configuration
+     * Class constructor with basic scatterplot configuration
      * @param {Object} _config
      *  - parentElement: DOM element for SVG container
      *  - containerWidth: width of SVG container
      *  - containerHeight: height of SVG container
      *  - margin: definition of top, right, left and bottom margins
-     *  - chartTitle: title for chart
-     *  - xAxisLabel: x-axis label
-     *  - yAxisLabel: y-axis label
      * @param {Array} _data
      */
     constructor(_config, _data) {
@@ -21,9 +18,6 @@ class Histogram {
             containerWidth: _config.containerWidth || 500,
             containerHeight: _config.containerHeight || 300,
             margin: _config.margin || { top: 50, right: 20, bottom: 50, left: 50 },
-            chartTitle: _config.chartTitle,
-            xAxisLabel: _config.xAxisLabel,
-            yAxisLabel: _config.yAxisLabel,
         }
         this.data = _data;
         this.initVis();
@@ -48,12 +42,14 @@ class Histogram {
 
         // initialize axes
         vis.xAxis = d3.axisBottom(vis.xScale)
-            .ticks(10)
-            .tickSizeOuter(0);
+            .ticks(6)
+            .tickSize(-vis.height - 10)
+            .tickPadding(10);
 
         vis.yAxis = d3.axisLeft(vis.yScale)
-            .ticks(10)
-            .tickSizeOuter(0);
+            .ticks(6)
+            .tickSize(-vis.width - 10)
+            .tickPadding(10);
 
         // define size of SVG drawing area based on the specified SVG window 
         vis.svg = d3.select(vis.config.parentElement)
@@ -77,7 +73,7 @@ class Histogram {
             .attr('class', 'chart-title')
             .attr('x', vis.config.containerWidth / 2)
             .attr('y', vis.config.margin.top / 2)
-            .text(vis.config.chartTitle)
+            .text('Child Mortality vs. Usage of at Least Basic Sanitation')
 
         // axis labels
         vis.chart.append('text') // y-axis
@@ -85,13 +81,14 @@ class Histogram {
             .attr('transform', 'rotate(-90)')
             .attr('y', 0 - vis.config.margin.left + 15)
             .attr('x', 0 - (vis.height / 2))
-            .text(vis.config.yAxisLabel);
+            .text("Child Mortality Rate (%)");
 
         vis.chart.append('text') // x-axis
             .attr('class', 'axis-title')
             .attr('x', vis.width / 2)
             .attr('y', vis.height + vis.config.margin.bottom - 5)
-            .text(vis.config.xAxisLabel);
+            .text('Percent of Population Using at Least Basic Sanitation (%)');
+
 
         // render initial visualization
         vis.updateVis();
@@ -103,18 +100,15 @@ class Histogram {
     updateVis() {
         let vis = this;
 
-        // create bins for histogram
-        const binGenerator = d3.bin()
-            .thresholds(10)
-            .value(d => d.value);
+        // get x and y values
+        vis.xValue = d => d.xValue;
+        vis.yValue = d => d.yValue;
 
-        vis.bins = binGenerator(vis.data);
+        // set the scale input domains
+        vis.xScale.domain([0, d3.max(vis.data, vis.xValue)]);
+        vis.yScale.domain([0, d3.max(vis.data, vis.yValue)]);
 
-        // update scale domains
-        vis.xScale.domain([0, 100]);
-        vis.yScale.domain([0, d3.max(vis.bins, d => d.length)]);
-
-        // render histogram
+        // render scatterplot
         vis.renderVis();
     }
 
@@ -124,29 +118,30 @@ class Histogram {
     renderVis() {
         let vis = this;
 
-        // render bars in chart
-        vis.chart.selectAll('.bar')
-            .data(vis.bins)
+        // add circles
+        vis.chart.selectAll('.symbol')
+            .data(vis.data)
             .enter()
-            .append('rect')
-            .attr('class', 'bar')
-            .attr('width', d => vis.xScale(d.x1) - vis.xScale(d.x0) - 1)
-            .attr('height', d => vis.height - vis.yScale(d.length))
-            .attr('y', d => vis.yScale(d.length))
-            .attr('x', d => vis.xScale(d.x0));
+            .append('circle')
+            .attr('class', 'symbol')
+            .attr('transform', d => `translate(${vis.jitter(vis.xScale(vis.xValue(d)))}, ${vis.yScale(vis.yValue(d))})`);
 
-        // update axis
-        vis.xAxisG.call(vis.xAxis);
+        // update the axes and gridlines
+        vis.xAxisG
+            .call(vis.xAxis);
 
-        // update y-axis with horizontal gridlines
         vis.yAxisG
-            .call(d3.axisLeft(vis.yScale)
-                .ticks(10)
-                .tickSize(-vis.width) // creates gridlines
-                .tickSizeOuter(0)
-            )
-            .call(g => g.select('.domain').remove()) // remove vertical line
-            .selectAll('line')
-            .attr('stroke', 'darkgrey');
+            .call(vis.yAxis);
+    }
+
+    /**
+     * Change the position slightly to better see if multiple symbols share the same coordinates
+     */
+    jitter(value) {
+        var num = Math.floor(Math.random() * 5) + 1; // this will get a number between 1 and 5;
+        num *= Math.round(Math.random()) ? 1 : -1; // this will add minus sign in 50% of cases
+        console.log(num);
+        const jittered = value + num;
+        return Math.min(100, Math.max(0, jittered)); // prevent jitter from moving points over 100%
     }
 }
