@@ -25,8 +25,9 @@ class ChoroplethMap {
             margin: _config.margin || { top: 0, right: 0, bottom: 0, left: 0 },
             legendBottom: _config.legendBottom || 25,
             legendLeft: _config.legendLeft || 0,
-            legendRectHeight: _config.legendRectHeight || 10,
-            legendRectWidth: _config.legendRectWidth || 250,
+            legendHeight: _config.legendHeight || 35,
+            legendRectHeight: _config.legendRectHeight || 15,
+            legendRectWidth: _config.legendRectWidth || 350,
             legendLabel: _config.legendLabel,
         }
         this.data = _data;
@@ -42,11 +43,10 @@ class ChoroplethMap {
         // calculate inner chart size
         vis.width = vis.config.containerWidth - vis.config.margin.left - vis.config.margin.right;
         vis.height = vis.config.containerHeight - vis.config.margin.top - vis.config.margin.bottom;
-        vis.mapHeight = vis.height - 40
 
         // define size of SVG drawing area based on the specified SVG window 
         vis.svg = d3.select(vis.config.parentElement)
-            .attr('viewBox', `0 0 ${vis.config.containerWidth} ${vis.config.containerHeight}`)
+            .attr('viewBox', `0 0 ${vis.config.containerWidth + vis.config.legendHeight} ${vis.config.containerHeight}`)
             .attr('preserveAspectRatio', 'xMidYMid meet');
 
         // append group element that will contain our actual chart and position it according to the given margin config
@@ -67,12 +67,12 @@ class ChoroplethMap {
             .append('pattern')
             .attr('id', 'lightstripe')
             .attr('patternUnits', 'userSpaceOnUse')
-            .attr('width', 4)
-            .attr('height', 4)
+            .attr('width', 7)
+            .attr('height', 7)
             .append('path')
-            .attr('d', 'M 0,0 L 4,4') 
-            .attr('stroke', 'grey') 
-            .attr('stroke-width', 0.5); 
+            .attr('d', 'M 0,0 L 7,7')
+            .attr('stroke', 'black')
+            .attr('stroke-width', 0.5);
 
 
         // initialize gradient that will later be use for the legend
@@ -83,23 +83,23 @@ class ChoroplethMap {
         const totalLegendWidth = 35 + vis.config.legendRectWidth; // shift 35 pixels right to account for no data legend value
         vis.legend = vis.chart.append('g')
             .attr('class', 'legend')
-            .attr('transform', `translate(${vis.width / 2 - totalLegendWidth / 2},${vis.height - vis.config.legendBottom})`);
+            .attr('transform', `translate(${vis.width / 2 - totalLegendWidth / 2},${vis.height + 25})`);
 
         // label legend
         vis.legendTitle = vis.legend.append('text')
             .attr('class', 'legend-title')
-            .attr('font-size', '.55rem')
+            .attr('font-size', '1rem')
             .attr('text-anchor', 'middle') // Add this
             .attr('x', ((vis.config.legendRectWidth + 35) / 2)) // Center it here
             .attr('y', -5)
             .text(vis.config.legendLabel);
 
         // create sub-legend for no data key
-        vis.noDataLegend = vis.legend.append('g'); 
+        vis.noDataLegend = vis.legend.append('g');
 
         // fill legend value with lightstrip (diagonal lines)
         vis.noDataLegend.append('rect')
-            .attr('width', 20)
+            .attr('width', 30)
             .attr('height', vis.config.legendRectHeight)
             .attr('fill', 'url(#lightstripe)')
             .attr('stroke', 'black')
@@ -107,17 +107,17 @@ class ChoroplethMap {
 
         // add "No Data" as label to sub-legend
         vis.noDataLegend.append('text')
-        .attr('class', 'no-data-label')
+            .attr('class', 'no-data-label')
             .attr('x', 10)
-            .attr('y', 20)
+            .attr('y', 25)
             .attr('text-anchor', 'middle')
-            .attr('font-size', '.5rem')
+            .attr('font-size', '.75rem')
             .attr('dy', '.35em')
             .text('No Data');
 
         // setup legend bin blocks to the right of the no data legend
         vis.legendBlocks = vis.legend.append('g')
-            .attr('transform', 'translate(35, 0)');
+            .attr('transform', 'translate(45, 0)');
 
         // render initial visualization
         vis.updateVis();
@@ -146,7 +146,7 @@ class ChoroplethMap {
         let vis = this;
 
         // defines the scale of the projection so that the geometry fits within the SVG area
-        vis.projection.fitSize([vis.width, vis.mapHeight], vis.data);
+        vis.projection.fitSize([vis.width, vis.height], vis.data);
 
         // append world map
         const countryPath = vis.chart.selectAll('.country')
@@ -203,6 +203,7 @@ class ChoroplethMap {
             .attr('x2', (d, i) => i * blockWidth)
             .attr('y1', 0)
             .attr('y2', vis.config.legendRectHeight + 2)
+            .attr('stroke', 'black')
             .attr('stroke-width', 0.25);
 
         // add legend labels at each bin 
@@ -211,11 +212,16 @@ class ChoroplethMap {
             .join('text')
             .attr('class', 'legend-label')
             .attr('text-anchor', 'middle')
-            .attr('font-size', '.5rem')
+            .attr('font-size', '.75rem')
             .attr('dy', '.35em')
             .attr('y', 20)
             .attr('y', vis.config.legendRectHeight + 10)
-            .attr('x', (d, i) => 35 + (i * blockWidth))
+            .attr('x', (d, i) => 45 + (i * blockWidth))
             .text(d => d3.format(".0f")(d));
+
+        vis.chart.attr(
+            "transform",
+            `translate(${vis.config.margin.left}, ${vis.config.margin.top - 25})`
+        );
     }
 }
