@@ -13,5 +13,5 @@ if __name__ == "__main__":
     )
     print("Downloaded data")
     loc = Path(input("CSV filename: ").strip())
-    df.to_csv(Path("unprocessed_csvs") / loc, index=False)
+    df.to_csv(Path("prepro/unprocessed_csvs") / loc, index=False)
     print(f"Saved {loc}")
