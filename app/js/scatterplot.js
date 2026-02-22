@@ -125,8 +125,7 @@ class Scatterplot {
         // add circles
         vis.chart.selectAll('.symbol')
             .data(vis.data)
-            .enter()
-            .append('circle')
+            .join('circle')
             .attr('class', 'symbol')
             .attr('transform', d => `translate(${vis.xScale(vis.xValue(d))}, ${vis.yScale(vis.yValue(d))})`);
 

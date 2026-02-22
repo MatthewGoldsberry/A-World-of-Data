@@ -120,8 +120,7 @@ class Histogram {
         // render bars in chart
         vis.chart.selectAll('.bar')
             .data(vis.bins)
-            .enter()
-            .append('rect')
+            .join('rect')
             .attr('class', 'bar')
             .attr('width', d => vis.xScale(d.x1) - vis.xScale(d.x0) - 1)
             .attr('height', d => vis.height - vis.yScale(d.length))
