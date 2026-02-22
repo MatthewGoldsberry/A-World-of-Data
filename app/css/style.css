@@ -168,14 +168,14 @@ body {
 
 /* --- Chart Expansion in Side Columns --- */
 
-#sanitation_choropleth,
+#right_choropleth,
 #child_mortality_choropleth {
     width: 120%;
     position: relative;
     z-index: 1;
 }
 
-#sanitation_choropleth {
+#right_choropleth {
     /* shift to make the expansion stay in-screen */
     margin-left: -10%;
 }
@@ -185,7 +185,7 @@ body {
     margin-left: -5%;
 }
 
-#sanitation_histogram,
+#right_histogram,
 #child_mortality_histogram {
     transform: scale(1.20);
     transform-origin: center center;

@@ -10,6 +10,8 @@ class Scatterplot {
      *  - containerWidth: width of SVG container
      *  - containerHeight: height of SVG container
      *  - margin: definition of top, right, left and bottom margins
+     *  - chartTitle: Title of chart
+     *  - xAxisLabel: x-axis label
      * @param {Array} _data
      */
     constructor(_config, _data) {
@@ -18,6 +20,8 @@ class Scatterplot {
             containerWidth: _config.containerWidth || 500,
             containerHeight: _config.containerHeight || 300,
             margin: _config.margin || { top: 40, right: 30, bottom: 50, left: 50 },
+            chartTitle: _config.chartTitle,
+            xAxisLabel: _config.xAxisLabel,
         }
         this.data = _data;
         this.initVis();
@@ -73,7 +77,7 @@ class Scatterplot {
             .attr('class', 'chart-title')
             .attr('x', vis.config.containerWidth / 2)
             .attr('y', vis.config.margin.top / 2)
-            .text('Child Mortality vs. Usage of at Least Basic Sanitation')
+            .text(vis.config.chartTitle)
 
         // axis labels
         vis.chart.append('text') // y-axis
@@ -87,7 +91,7 @@ class Scatterplot {
             .attr('class', 'axis-title')
             .attr('x', vis.width / 2)
             .attr('y', vis.height + vis.config.margin.bottom - 5)
-            .text('Percent of Population Using at Least Basic Sanitation (%)');
+            .text(vis.config.xAxisLabel);
 
 
         // render initial visualization

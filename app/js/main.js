@@ -31,8 +31,10 @@ function updateHistogram(data, valueKey, year, histogram, parentElement, xAxisLa
  * @param {number} year - year used to filter data
  * @param {Scatterplot} scatterplot - reference to Scatterplot instance
  * @param {string} parentElement - css selector for target SVG element
+ * @param {string} chartTitle - title of chart
+ * @param {string} xAxisLabel - label for x-axis
  */
-function updateScatterplot(data, xValueKey, yValueKey, year, scatterplot, parentElement) {
+function updateScatterplot(data, xValueKey, yValueKey, year, scatterplot, parentElement, chartTitle, xAxisLabel) {
     // filter data based on provided year and valueKeys
     const filteredData = data.filter(d => d.year === year);
     filteredData.forEach(d => {
@@ -41,7 +43,7 @@ function updateScatterplot(data, xValueKey, yValueKey, year, scatterplot, parent
     });
 
     // initialize and render scatterplot
-    const config = { parentElement };
+    const config = { parentElement, chartTitle, xAxisLabel };
     scatterplot = new Scatterplot(config, filteredData);
     scatterplot.updateVis();
 }
@@ -113,12 +115,28 @@ function updateChoroplethMap(data, geoData, valueKey, year, choroplethMap, paren
  * Load data from CSV files and initialize charts
  */
 
+// mapping of selection value to data labels {selectValue: {scatterTitle: '', xAxisLabel: ''}}
+const labelMap = {
+    'sanitation': {
+        scatterTitle: 'Child Mortality vs. Usage of at Least Basic Sanitation',
+        xAxisLabel: 'Percent of Population Using at Least Basic Sanitation (%)'
+    },
+    'electricity': {
+        scatterTitle: 'Child Mortality vs. Access to Electricity',
+        xAxisLabel: 'Percent of Population With Access to Electricity (%)'
+    },
+}
+
 // chart references
-let sanitationHistogram;
+let rightHistogram;
 let childMortalityHistogram;
 let scatterplot;
 let childMortalityChoroplethMap;
-let sanitationChoroplethMap;
+let rightChoroplethMap;
+
+// global data so interactions can use it
+let geoData;
+let CountryData;
 
 // load dataset
 Promise.all([
@@ -126,29 +144,48 @@ Promise.all([
     d3.csv('data/child_mortality_trends.csv')
 ])
     .then(data => {
-        const geoData = data[0];
-        const countryData = data[1];
+        geoData = data[0];
+        countryData = data[1];
 
         // interpret all points besides entity from csv as numbers instead of strings
         countryData.forEach(d => {
             d.year = +d.year;
             d.child_mortality_rate = +d.child_mortality_rate;
-            d.sanitation = +d['share of the population using at least basic sanitation']
+            d.sanitation = +d['share of the population using at least basic sanitation'];
+            d.electricity = +d['eg_elc_accs_zs'];
         });
 
         // initialize and render histograms
         updateHistogram(countryData, 'child_mortality_rate', 2023, childMortalityHistogram, '#child_mortality_histogram', 'Child Mortality Rate (%)');
-        updateHistogram(countryData, 'sanitation', 2023, sanitationHistogram, '#sanitation_histogram', 'Percent of Population Using at Least Basic Sanitation (%)');
+        updateHistogram(countryData, 'sanitation', 2023, rightHistogram, '#right_histogram', labelMap['sanitation']['xAxisLabel']);
 
         // initialize and render scatterplot
-        updateScatterplot(countryData, 'sanitation', 'child_mortality_rate', 2023, scatterplot, '#scatterplot');
+        updateScatterplot(countryData, 'sanitation', 'child_mortality_rate', 2023, scatterplot, '#scatterplot', labelMap['sanitation']['scatterTitle'], labelMap['sanitation']['xAxisLabel']);
 
         // initialize and render choropleth map
         updateChoroplethMap(countryData, geoData, 'child_mortality_rate', 2023, childMortalityChoroplethMap, '#child_mortality_choropleth', 'Child Mortality Rate (%)');
-        updateChoroplethMap(countryData, geoData, 'sanitation', 2023, sanitationChoroplethMap, '#sanitation_choropleth', 'Percent of Population Using at Least Basic Sanitation (%)');
+        updateChoroplethMap(countryData, geoData, 'sanitation', 2023, rightChoroplethMap, '#right_choropleth', labelMap['sanitation']['xAxisLabel']);
     })
     .catch(error => console.error(error));
 
 /**
- * TODO implement interaction section here?
+ * Interactions
  */
+
+/**
+ * Handler for when the user interacts with the data selector dropdown
+ */
+d3.select('#data-selector').on('change', function () {
+    // get the selected value from user
+    const selected = d3.select(this).property('value');
+
+    // clear svgs before creating the new ones
+    d3.select('#right_histogram').selectAll('*').remove();
+    d3.select('#scatterplot').selectAll('*').remove();
+    d3.select('#right_choropleth').selectAll('*').remove();
+
+    // add the new svgs with the selected dataset
+    updateHistogram(countryData, selected, 2023, rightHistogram, '#right_histogram', labelMap[selected]['xAxisLabel'])
+    updateScatterplot(countryData, selected, 'child_mortality_rate', 2023, scatterplot, '#scatterplot', labelMap[selected]['scatterTitle'], labelMap[selected]['xAxisLabel'])
+    updateChoroplethMap(countryData, geoData, selected, 2023, rightChoroplethMap, '#right_choropleth', labelMap[selected]['xAxisLabel'])
+})
