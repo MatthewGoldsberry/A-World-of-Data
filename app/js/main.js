@@ -138,6 +138,9 @@ let rightChoroplethMap;
 let geoData;
 let CountryData;
 
+// global user selections
+let currentDataset;
+
 // load dataset
 Promise.all([
     d3.json('data/world.geojson'),
@@ -177,7 +180,7 @@ Promise.all([
  */
 d3.select('#data-selector').on('change', function () {
     // get the selected value from user
-    const selected = d3.select(this).property('value');
+    currentDataset = d3.select(this).property('value');
 
     // clear svgs before creating the new ones
     d3.select('#right_histogram').selectAll('*').remove();
@@ -185,7 +188,7 @@ d3.select('#data-selector').on('change', function () {
     d3.select('#right_choropleth').selectAll('*').remove();
 
     // add the new svgs with the selected dataset
-    updateHistogram(countryData, selected, 2023, rightHistogram, '#right_histogram', labelMap[selected]['xAxisLabel'])
-    updateScatterplot(countryData, selected, 'child_mortality_rate', 2023, scatterplot, '#scatterplot', labelMap[selected]['scatterTitle'], labelMap[selected]['xAxisLabel'])
-    updateChoroplethMap(countryData, geoData, selected, 2023, rightChoroplethMap, '#right_choropleth', labelMap[selected]['xAxisLabel'])
+    updateHistogram(countryData, currentDataset, 2023, rightHistogram, '#right_histogram', labelMap[selected]['xAxisLabel'])
+    updateScatterplot(countryData, currentDataset, 'child_mortality_rate', 2023, scatterplot, '#scatterplot', labelMap[selected]['scatterTitle'], labelMap[selected]['xAxisLabel'])
+    updateChoroplethMap(countryData, geoData, currentDataset, 2023, rightChoroplethMap, '#right_choropleth', labelMap[selected]['xAxisLabel'])
 })
