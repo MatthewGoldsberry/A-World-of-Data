@@ -10,7 +10,6 @@ class Histogram {
      *  - containerWidth: width of SVG container
      *  - containerHeight: height of SVG container
      *  - margin: definition of top, right, left and bottom margins
-     *  - chartTitle: title for chart
      *  - xAxisLabel: x-axis label
      *  - yAxisLabel: y-axis label
      * @param {Array} _data
@@ -21,7 +20,6 @@ class Histogram {
             containerWidth: _config.containerWidth || 500,
             containerHeight: _config.containerHeight || 300,
             margin: _config.margin || { top: 50, right: 20, bottom: 50, left: 50 },
-            chartTitle: _config.chartTitle,
             xAxisLabel: _config.xAxisLabel,
             yAxisLabel: _config.yAxisLabel,
         }
@@ -52,7 +50,7 @@ class Histogram {
             .tickSizeOuter(0);
 
         vis.yAxis = d3.axisLeft(vis.yScale)
-            .ticks(10)
+            .ticks(5)
             .tickSizeOuter(0);
 
         // define size of SVG drawing area based on the specified SVG window 
@@ -72,25 +70,20 @@ class Histogram {
             .attr('class', 'axis x-axis')
             .attr('transform', `translate(0,${vis.height})`); // move to bottom of chart
 
-        // chart title
-        vis.svg.append('text')
-            .attr('class', 'chart-title')
-            .attr('x', vis.config.containerWidth / 2)
-            .attr('y', vis.config.margin.top / 2)
-            .text(vis.config.chartTitle)
-
         // axis labels
         vis.chart.append('text') // y-axis
             .attr('class', 'axis-title')
             .attr('transform', 'rotate(-90)')
             .attr('y', 0 - vis.config.margin.left + 15)
             .attr('x', 0 - (vis.height / 2))
+            .style('font-size', '1.1rem')
             .text(vis.config.yAxisLabel);
 
         vis.chart.append('text') // x-axis
             .attr('class', 'axis-title')
             .attr('x', vis.width / 2)
             .attr('y', vis.height + vis.config.margin.bottom - 5)
+            .style('font-size', '1.1rem')
             .text(vis.config.xAxisLabel);
 
         // render initial visualization
@@ -111,7 +104,7 @@ class Histogram {
         vis.bins = binGenerator(vis.data);
 
         // update scale domains
-        vis.xScale.domain([0, 100]);
+        vis.xScale.domain([vis.bins[0].x0, vis.bins[vis.bins.length - 1].x1]);
         vis.yScale.domain([0, d3.max(vis.bins, d => d.length)]);
 
         // render histogram
@@ -137,16 +130,20 @@ class Histogram {
 
         // update axis
         vis.xAxisG.call(vis.xAxis);
+        vis.xAxisG.selectAll('.tick text')
+            .style('font-size', '0.85rem');
 
         // update y-axis with horizontal gridlines
         vis.yAxisG
             .call(d3.axisLeft(vis.yScale)
-                .ticks(10)
+                .ticks(5)
                 .tickSize(-vis.width) // creates gridlines
                 .tickSizeOuter(0)
             )
             .call(g => g.select('.domain').remove()) // remove vertical line
             .selectAll('line')
             .attr('stroke', 'darkgrey');
+        vis.yAxisG.selectAll('.tick text')
+            .style('font-size', '0.85rem');
     }
 }
