@@ -9,16 +9,15 @@
  * @param {number} year - year used to filter data
  * @param {Histogram} histogram - reference to histogram instance
  * @param {string} parentElement - css selector for target SVG element
- * @param {string} chartTitle - title of the chart
  * @param {string} xAxisLabel - x-axis label
  */
-function updateHistogram(data, valueKey, year, histogram, parentElement, chartTitle, xAxisLabel) {
+function updateHistogram(data, valueKey, year, histogram, parentElement, xAxisLabel) {
     // filter data based on provided year and valueKey
     const filteredData = data.filter(d => d.year === year);
     filteredData.forEach(d => d.value = +d[valueKey])
 
     // initialize and render histogram
-    const config = { parentElement, chartTitle, xAxisLabel, yAxisLabel: 'Number of Countries' };
+    const config = { parentElement, xAxisLabel, yAxisLabel: 'Number of Countries' };
     histogram = new Histogram(config, filteredData);
     histogram.updateVis();
 }
@@ -118,7 +117,8 @@ function updateChoroplethMap(data, geoData, valueKey, year, choroplethMap, paren
 let sanitationHistogram;
 let childMortalityHistogram;
 let scatterplot;
-let choroplethMap;
+let childMortalityChoroplethMap;
+let sanitationChoroplethMap;
 
 // load dataset
 Promise.all([
@@ -137,14 +137,15 @@ Promise.all([
         });
 
         // initialize and render histograms
-        updateHistogram(countryData, 'child_mortality_rate', 2023, childMortalityHistogram, '#child_mortality_histogram', 'Under-Five Child Mortality', 'Child Mortality Rate (%)');
-        updateHistogram(countryData, 'sanitation', 2023, sanitationHistogram, '#sanitation_histogram', 'Basic Sanitation Usage', 'Percent of Population Using at Least Basic Sanitation (%)');
+        updateHistogram(countryData, 'child_mortality_rate', 2023, childMortalityHistogram, '#child_mortality_histogram', 'Child Mortality Rate (%)');
+        updateHistogram(countryData, 'sanitation', 2023, sanitationHistogram, '#sanitation_histogram', 'Percent of Population Using at Least Basic Sanitation (%)');
 
         // initialize and render scatterplot
         updateScatterplot(countryData, 'sanitation', 'child_mortality_rate', 2023, scatterplot, '#scatterplot');
 
         // initialize and render choropleth map
-        updateChoroplethMap(countryData, geoData, 'sanitation', 2023, choroplethMap, '#sanitation_map', 'Percent of Population Using at Least Basic Sanitation (%)');
+        updateChoroplethMap(countryData, geoData, 'child_mortality_rate', 2023, childMortalityChoroplethMap, '#child_mortality_choropleth', 'Child Mortality Rate (%)');
+        updateChoroplethMap(countryData, geoData, 'sanitation', 2023, sanitationChoroplethMap, '#sanitation_choropleth', 'Percent of Population Using at Least Basic Sanitation (%)');
     })
     .catch(error => console.error(error));
 
