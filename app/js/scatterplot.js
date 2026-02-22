@@ -17,7 +17,7 @@ class Scatterplot {
             parentElement: _config.parentElement,
             containerWidth: _config.containerWidth || 500,
             containerHeight: _config.containerHeight || 300,
-            margin: _config.margin || { top: 50, right: 20, bottom: 50, left: 50 },
+            margin: _config.margin || { top: 40, right: 30, bottom: 50, left: 50 },
         }
         this.data = _data;
         this.initVis();
@@ -73,6 +73,7 @@ class Scatterplot {
             .attr('class', 'chart-title')
             .attr('x', vis.config.containerWidth / 2)
             .attr('y', vis.config.margin.top / 2)
+            .style('font-size', '1.2rem')
             .text('Child Mortality vs. Usage of at Least Basic Sanitation')
 
         // axis labels
@@ -81,12 +82,14 @@ class Scatterplot {
             .attr('transform', 'rotate(-90)')
             .attr('y', 0 - vis.config.margin.left + 15)
             .attr('x', 0 - (vis.height / 2))
+            .style('font-size', '1rem')
             .text("Child Mortality Rate (%)");
 
         vis.chart.append('text') // x-axis
             .attr('class', 'axis-title')
             .attr('x', vis.width / 2)
             .attr('y', vis.height + vis.config.margin.bottom - 5)
+            .style('font-size', '1rem')
             .text('Percent of Population Using at Least Basic Sanitation (%)');
 
 
@@ -129,8 +132,12 @@ class Scatterplot {
         // update the axes and gridlines
         vis.xAxisG
             .call(vis.xAxis);
+        vis.xAxisG.selectAll('.tick text')
+            .style('font-size', '0.85rem');
 
         vis.yAxisG
             .call(vis.yAxis);
+        vis.yAxisG.selectAll('.tick text')
+            .style('font-size', '0.85rem');
     }
 }
