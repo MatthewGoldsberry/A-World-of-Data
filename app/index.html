@@ -26,8 +26,15 @@
                 <div class="main-chart-wrapper">
                     <svg id="scatterplot"></svg>
                 </div>
-                <div class="slider-wrapper">
-                    <input type="range" id="yearSlider">
+                <div class="slider-card">
+                    <div class="slider-wrapper">
+                        <span id="minYearLabel" class="slider-edge-label"></span>
+                        <input type="range" id="yearSlider">
+                        <span id="maxYearLabel" class="slider-edge-label"></span>
+                    </div>
+                    <div class="slider-readout">
+                        Year: <span id="active-year">2023</span>
+                    </div>
                 </div>
             </div>
         </div>

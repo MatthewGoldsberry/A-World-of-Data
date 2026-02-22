@@ -111,6 +111,32 @@ function updateChoroplethMap(data, geoData, valueKey, year, choroplethMap, paren
     choroplethMap.updateVis();
 }
 
+
+/**
+ * Initializes the slider element based on max and min years in countryData and sets slider to max.
+ */
+function initYearSlider() {
+    // get max and min years
+    const years = countryData.map(d => d.year);
+    const minYear = d3.min(years);
+    const maxYear = d3.max(years);
+
+    // set default currentYear to max in dataset
+    currentYear = maxYear;
+
+    // initialize slider in DOM
+    d3.select('#yearSlider')
+        .attr('min', minYear)
+        .attr('max', maxYear)
+        .attr('value', currentYear)
+        .attr('step', 1);
+
+    // set the labels to the slider
+    d3.select('#minYearLabel').text(minYear);
+    d3.select('#maxYearLabel').text(maxYear);
+    d3.select('#active-year').text(currentYear);
+}
+
 /**
  * Load data from CSV files and initialize charts
  */
@@ -140,8 +166,9 @@ let CountryData;
 
 // global user selections
 let currentDataset;
+let currentYear;
 
-// load dataset
+// load datasets
 Promise.all([
     d3.json('data/world.geojson'),
     d3.csv('data/child_mortality_trends.csv')
@@ -149,6 +176,7 @@ Promise.all([
     .then(data => {
         geoData = data[0];
         countryData = data[1];
+        currentDataset = 'sanitation';
 
         // interpret all points besides entity from csv as numbers instead of strings
         countryData.forEach(d => {
@@ -158,16 +186,20 @@ Promise.all([
             d.electricity = +d['eg_elc_accs_zs'];
         });
 
+        // initialize visual elements
+        initYearSlider();
+        // TODO refactor functions to be an init for the class and then an update for the class
+
         // initialize and render histograms
-        updateHistogram(countryData, 'child_mortality_rate', 2023, childMortalityHistogram, '#child_mortality_histogram', 'Child Mortality Rate (%)');
-        updateHistogram(countryData, 'sanitation', 2023, rightHistogram, '#right_histogram', labelMap['sanitation']['xAxisLabel']);
+        updateHistogram(countryData, 'child_mortality_rate', currentYear, childMortalityHistogram, '#child_mortality_histogram', 'Child Mortality Rate (%)');
+        updateHistogram(countryData, 'sanitation', currentYear, rightHistogram, '#right_histogram', labelMap['sanitation']['xAxisLabel']);
 
         // initialize and render scatterplot
-        updateScatterplot(countryData, 'sanitation', 'child_mortality_rate', 2023, scatterplot, '#scatterplot', labelMap['sanitation']['scatterTitle'], labelMap['sanitation']['xAxisLabel']);
+        updateScatterplot(countryData, 'sanitation', 'child_mortality_rate', currentYear, scatterplot, '#scatterplot', labelMap['sanitation']['scatterTitle'], labelMap['sanitation']['xAxisLabel']);
 
         // initialize and render choropleth map
-        updateChoroplethMap(countryData, geoData, 'child_mortality_rate', 2023, childMortalityChoroplethMap, '#child_mortality_choropleth', 'Child Mortality Rate (%)');
-        updateChoroplethMap(countryData, geoData, 'sanitation', 2023, rightChoroplethMap, '#right_choropleth', labelMap['sanitation']['xAxisLabel']);
+        updateChoroplethMap(countryData, geoData, 'child_mortality_rate', currentYear, childMortalityChoroplethMap, '#child_mortality_choropleth', 'Child Mortality Rate (%)');
+        updateChoroplethMap(countryData, geoData, 'sanitation', currentYear, rightChoroplethMap, '#right_choropleth', labelMap['sanitation']['xAxisLabel']);
     })
     .catch(error => console.error(error));
 
@@ -188,7 +220,30 @@ d3.select('#data-selector').on('change', function () {
     d3.select('#right_choropleth').selectAll('*').remove();
 
     // add the new svgs with the selected dataset
-    updateHistogram(countryData, currentDataset, 2023, rightHistogram, '#right_histogram', labelMap[selected]['xAxisLabel'])
-    updateScatterplot(countryData, currentDataset, 'child_mortality_rate', 2023, scatterplot, '#scatterplot', labelMap[selected]['scatterTitle'], labelMap[selected]['xAxisLabel'])
-    updateChoroplethMap(countryData, geoData, currentDataset, 2023, rightChoroplethMap, '#right_choropleth', labelMap[selected]['xAxisLabel'])
-})
+    updateHistogram(countryData, currentDataset, currentYear, rightHistogram, '#right_histogram', labelMap[currentDataset]['xAxisLabel'])
+    updateScatterplot(countryData, currentDataset, 'child_mortality_rate', currentYear, scatterplot, '#scatterplot', labelMap[currentDataset]['scatterTitle'], labelMap[currentDataset]['xAxisLabel'])
+    updateChoroplethMap(countryData, geoData, currentDataset, currentYear, rightChoroplethMap, '#right_choropleth', labelMap[currentDataset]['xAxisLabel'])
+});
+
+/**
+ * Handler for when the user interacts with the year slider
+ */
+d3.select('#yearSlider').on('input', function () {
+    // get the new year from the slider
+    currentYear = +this.value;
+    d3.select('#active-year').text(currentYear);
+
+    // clear all SVGs to prevent overlap
+    d3.select('#child_mortality_histogram').selectAll('*').remove();
+    d3.select('#right_histogram').selectAll('*').remove();
+    d3.select('#scatterplot').selectAll('*').remove();
+    d3.select('#child_mortality_choropleth').selectAll('*').remove();
+    d3.select('#right_choropleth').selectAll('*').remove();
+
+    // re-render everything with the new currentYear and currentDataset
+    updateHistogram(countryData, 'child_mortality_rate', currentYear, childMortalityHistogram, '#child_mortality_histogram', 'Child Mortality Rate (%)');
+    updateHistogram(countryData, currentDataset, currentYear, rightHistogram, '#right_histogram', labelMap[currentDataset]['xAxisLabel']);
+    updateScatterplot(countryData, currentDataset, 'child_mortality_rate', currentYear, scatterplot, '#scatterplot', labelMap[currentDataset]['scatterTitle'], labelMap[currentDataset]['xAxisLabel']);
+    updateChoroplethMap(countryData, geoData, 'child_mortality_rate', currentYear, childMortalityChoroplethMap, '#child_mortality_choropleth', 'Child Mortality Rate (%)');
+    updateChoroplethMap(countryData, geoData, currentDataset, currentYear, rightChoroplethMap, '#right_choropleth', labelMap[currentDataset]['xAxisLabel']);
+});

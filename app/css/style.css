@@ -193,6 +193,69 @@ body {
     z-index: 1;
 }
 
+/* --- Slider Configurations --- */
+
+.slider-card {
+    width: 100%;
+    padding: 25px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.slider-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+    margin-bottom: 0;
+}
+
+.slider-edge-label {
+    font-size: 0.85rem;
+    color: black;
+    font-weight: bold;
+}
+
+#yearSlider {
+    flex-grow: 1;
+    width: 100%;
+    background: transparent;
+    cursor: pointer;
+}
+
+#yearSlider::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    background: #dee2e6;
+    border-radius: 2px;
+}
+
+#yearSlider::-webkit-slider-thumb {
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    /* center on slider */
+    margin-top: -7px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+}
+
+#yearSlider:active::-webkit-slider-thumb {
+    transform: scale(1.25);
+}
+
+.slider-readout {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: black;
+    background: #ececec;
+    padding: 4px 12px;
+    border-radius: 20px;
+    align-self: center;
+    margin-bottom: 0;
+}
 
 /* --- D3 Chart Configurations --- */
 
