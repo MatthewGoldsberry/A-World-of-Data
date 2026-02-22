@@ -62,6 +62,8 @@ class Histogram {
         vis.chart = vis.svg.append('g')
             .attr('transform', `translate(${vis.config.margin.left},${vis.config.margin.top})`);
 
+        vis.colors = ['#ffffd9', '#edf8b1', '#c7e9b4', '#7fcdbb', '#41b6c4', '#1d91c0', '#225ea8', '#253494', '#172976', '#081d58']
+
         // append axis groups
         vis.yAxisG = vis.chart.append('g')
             .attr('class', 'axis y-axis');
@@ -124,7 +126,9 @@ class Histogram {
             .attr('width', d => vis.xScale(d.x1) - vis.xScale(d.x0) - 1)
             .attr('height', d => vis.height - vis.yScale(d.length))
             .attr('y', d => vis.yScale(d.length))
-            .attr('x', d => vis.xScale(d.x0));
+            .attr('x', d => vis.xScale(d.x0))
+            .attr('fill', (d, i) => { return vis.colors[i] || vis.colors[vis.colors.length - 1]; })
+            .attr('stroke', 'black');
 
         // update axis
         vis.xAxisG.call(vis.xAxis);

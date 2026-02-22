@@ -209,16 +209,6 @@ body {
     text-anchor: middle;
 }
 
-/* Histogram Specific CSS */
-
-.bar {
-    fill: steelblue
-}
-
-.bar:hover {
-    fill: darkorange
-}
-
 /* Scatterplot Specific CSS */
 
 .symbol {
