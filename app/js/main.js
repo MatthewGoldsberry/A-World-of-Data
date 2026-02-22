@@ -3,28 +3,34 @@
  */
 
 /**
- * Create and render Histogram for a specific variable and year
+ * Update Histogram (and create new instance if it doesn't exist) for a specific variable and year
  * @param {Array<Object>} data - dataset loaded from CSV
  * @param {string} valueKey - name of column to be used for binning values
  * @param {number} year - year used to filter data
  * @param {Histogram} histogram - reference to histogram instance
  * @param {string} parentElement - css selector for target SVG element
  * @param {string} xAxisLabel - x-axis label
+ * @returns {Histogram} - Histogram instance
  */
 function updateHistogram(data, valueKey, year, histogram, parentElement, xAxisLabel) {
     // filter data based on provided year and valueKey
     const filteredData = data.filter(d => d.year === year);
     filteredData.forEach(d => d.value = +d[valueKey])
 
-    // initialize and render histogram
-    const config = { parentElement, xAxisLabel, yAxisLabel: 'Number of Countries' };
-    histogram = new Histogram(config, filteredData);
-    histogram.updateVis();
+    // create new instance if histogram is null, else update values in histogram and update vis
+    if (!histogram) {
+        return new Histogram({ parentElement, xAxisLabel, yAxisLabel: 'Number of Countries' }, filteredData);
+    } else {
+        histogram.config.xAxisLabel = xAxisLabel;
+        histogram.data = filteredData;
+        histogram.updateVis();
+        return histogram;
+    }
 }
 
 
 /**
- * Create and render Scatterplot for a specific variable pair and year
+ * Update Scatterplot (and create new instance if it doesn't exist) for a specific variable pair and year
  * @param {Array<Object>} data - dataset loaded from CSV
  * @param {string} xValueKey - name of column to be used for x axis
  * @param {string} yValueKey - name of column to be used for y axis
@@ -33,6 +39,7 @@ function updateHistogram(data, valueKey, year, histogram, parentElement, xAxisLa
  * @param {string} parentElement - css selector for target SVG element
  * @param {string} chartTitle - title of chart
  * @param {string} xAxisLabel - label for x-axis
+ * @returns {Scatterplot} - Scatterplot instance
  */
 function updateScatterplot(data, xValueKey, yValueKey, year, scatterplot, parentElement, chartTitle, xAxisLabel) {
     // filter data based on provided year and valueKeys
@@ -42,10 +49,16 @@ function updateScatterplot(data, xValueKey, yValueKey, year, scatterplot, parent
         d.yValue = +d[yValueKey];
     });
 
-    // initialize and render scatterplot
-    const config = { parentElement, chartTitle, xAxisLabel };
-    scatterplot = new Scatterplot(config, filteredData);
-    scatterplot.updateVis();
+    // create new instance if scatterplot is null, else update values in scatterplot and update vis
+    if (!scatterplot) {
+        return new Scatterplot({ parentElement, chartTitle, xAxisLabel }, filteredData);
+    } else {
+        scatterplot.config.chartTitle = chartTitle;
+        scatterplot.config.xAxisLabel = xAxisLabel;
+        scatterplot.data = filteredData;
+        scatterplot.updateVis();
+        return scatterplot
+    }
 }
 
 
@@ -77,7 +90,7 @@ function normalizeCountryName(name) {
 }
 
 /**
- * Create and render ChoroplethMap for a specific variable pair and year
+ * Update ChoroplethMap (and create new instance if it doesn't exist) for a specific variable pair and year
  * @param {Array<Object>} data - dataset loaded from CSV
  * @param {Array<Object>} geoData - topo dataset loaded from JSON
  * @param {string} valueKey - name of column to be used for binning values
@@ -85,6 +98,7 @@ function normalizeCountryName(name) {
  * @param {ChoroplethMap} choroplethMap - reference to ChoroplethMap instance
  * @param {string} parentElement - css selector for target SVG element
  * @param {string} legendLabel - name of legend
+ * @returns {ChoroplethMap} - ChoroplethMap instance
  */
 function updateChoroplethMap(data, geoData, valueKey, year, choroplethMap, parentElement, legendLabel) {
     // filter data based on provided year and valueKey
@@ -105,10 +119,15 @@ function updateChoroplethMap(data, geoData, valueKey, year, choroplethMap, paren
         }
     });
 
-    // initialize and render choropleth map
-    const config = { parentElement, legendLabel: legendLabel };
-    choroplethMap = new ChoroplethMap(config, geoData);
-    choroplethMap.updateVis();
+    // create new instance if choroplethMap is null, else update values in choroplethMap and update vis
+    if (!choroplethMap) {
+        return new ChoroplethMap({ parentElement, legendLabel: legendLabel }, geoData);
+    } else {
+        choroplethMap.config.legendLabel = legendLabel;
+        choroplethMap.data = geoData;
+        choroplethMap.updateVis();
+        return choroplethMap
+    }
 }
 
 
@@ -188,18 +207,11 @@ Promise.all([
 
         // initialize visual elements
         initYearSlider();
-        // TODO refactor functions to be an init for the class and then an update for the class
-
-        // initialize and render histograms
-        updateHistogram(countryData, 'child_mortality_rate', currentYear, childMortalityHistogram, '#child_mortality_histogram', 'Child Mortality Rate (%)');
-        updateHistogram(countryData, 'sanitation', currentYear, rightHistogram, '#right_histogram', labelMap['sanitation']['xAxisLabel']);
-
-        // initialize and render scatterplot
-        updateScatterplot(countryData, 'sanitation', 'child_mortality_rate', currentYear, scatterplot, '#scatterplot', labelMap['sanitation']['scatterTitle'], labelMap['sanitation']['xAxisLabel']);
-
-        // initialize and render choropleth map
-        updateChoroplethMap(countryData, geoData, 'child_mortality_rate', currentYear, childMortalityChoroplethMap, '#child_mortality_choropleth', 'Child Mortality Rate (%)');
-        updateChoroplethMap(countryData, geoData, 'sanitation', currentYear, rightChoroplethMap, '#right_choropleth', labelMap['sanitation']['xAxisLabel']);
+        childMortalityHistogram = updateHistogram(countryData, 'child_mortality_rate', currentYear, childMortalityHistogram, '#child_mortality_histogram', 'Child Mortality Rate (%)');
+        rightHistogram = updateHistogram(countryData, 'sanitation', currentYear, rightHistogram, '#right_histogram', labelMap['sanitation']['xAxisLabel']);
+        scatterplot = updateScatterplot(countryData, 'sanitation', 'child_mortality_rate', currentYear, scatterplot, '#scatterplot', labelMap['sanitation']['scatterTitle'], labelMap['sanitation']['xAxisLabel']);
+        childMortalityChoroplethMap = updateChoroplethMap(countryData, geoData, 'child_mortality_rate', currentYear, childMortalityChoroplethMap, '#child_mortality_choropleth', 'Child Mortality Rate (%)');
+        rightChoroplethMap = updateChoroplethMap(countryData, geoData, 'sanitation', currentYear, rightChoroplethMap, '#right_choropleth', labelMap['sanitation']['xAxisLabel']);
     })
     .catch(error => console.error(error));
 
@@ -214,15 +226,10 @@ d3.select('#data-selector').on('change', function () {
     // get the selected value from user
     currentDataset = d3.select(this).property('value');
 
-    // clear svgs before creating the new ones
-    d3.select('#right_histogram').selectAll('*').remove();
-    d3.select('#scatterplot').selectAll('*').remove();
-    d3.select('#right_choropleth').selectAll('*').remove();
-
     // add the new svgs with the selected dataset
-    updateHistogram(countryData, currentDataset, currentYear, rightHistogram, '#right_histogram', labelMap[currentDataset]['xAxisLabel'])
-    updateScatterplot(countryData, currentDataset, 'child_mortality_rate', currentYear, scatterplot, '#scatterplot', labelMap[currentDataset]['scatterTitle'], labelMap[currentDataset]['xAxisLabel'])
-    updateChoroplethMap(countryData, geoData, currentDataset, currentYear, rightChoroplethMap, '#right_choropleth', labelMap[currentDataset]['xAxisLabel'])
+    rightHistogram = updateHistogram(countryData, currentDataset, currentYear, rightHistogram, '#right_histogram', labelMap[currentDataset]['xAxisLabel'])
+    scatterplot = updateScatterplot(countryData, currentDataset, 'child_mortality_rate', currentYear, scatterplot, '#scatterplot', labelMap[currentDataset]['scatterTitle'], labelMap[currentDataset]['xAxisLabel'])
+    rightChoroplethMap = updateChoroplethMap(countryData, geoData, currentDataset, currentYear, rightChoroplethMap, '#right_choropleth', labelMap[currentDataset]['xAxisLabel'])
 });
 
 /**
@@ -233,17 +240,10 @@ d3.select('#yearSlider').on('input', function () {
     currentYear = +this.value;
     d3.select('#active-year').text(currentYear);
 
-    // clear all SVGs to prevent overlap
-    d3.select('#child_mortality_histogram').selectAll('*').remove();
-    d3.select('#right_histogram').selectAll('*').remove();
-    d3.select('#scatterplot').selectAll('*').remove();
-    d3.select('#child_mortality_choropleth').selectAll('*').remove();
-    d3.select('#right_choropleth').selectAll('*').remove();
-
     // re-render everything with the new currentYear and currentDataset
-    updateHistogram(countryData, 'child_mortality_rate', currentYear, childMortalityHistogram, '#child_mortality_histogram', 'Child Mortality Rate (%)');
-    updateHistogram(countryData, currentDataset, currentYear, rightHistogram, '#right_histogram', labelMap[currentDataset]['xAxisLabel']);
-    updateScatterplot(countryData, currentDataset, 'child_mortality_rate', currentYear, scatterplot, '#scatterplot', labelMap[currentDataset]['scatterTitle'], labelMap[currentDataset]['xAxisLabel']);
-    updateChoroplethMap(countryData, geoData, 'child_mortality_rate', currentYear, childMortalityChoroplethMap, '#child_mortality_choropleth', 'Child Mortality Rate (%)');
-    updateChoroplethMap(countryData, geoData, currentDataset, currentYear, rightChoroplethMap, '#right_choropleth', labelMap[currentDataset]['xAxisLabel']);
+    childMortalityHistogram = updateHistogram(countryData, 'child_mortality_rate', currentYear, childMortalityHistogram, '#child_mortality_histogram', 'Child Mortality Rate (%)');
+    rightHistogram = updateHistogram(countryData, currentDataset, currentYear, rightHistogram, '#right_histogram', labelMap[currentDataset]['xAxisLabel']);
+    scatterplot = updateScatterplot(countryData, currentDataset, 'child_mortality_rate', currentYear, scatterplot, '#scatterplot', labelMap[currentDataset]['scatterTitle'], labelMap[currentDataset]['xAxisLabel']);
+    childMortalityChoroplethMap = updateChoroplethMap(countryData, geoData, 'child_mortality_rate', currentYear, childMortalityChoroplethMap, '#child_mortality_choropleth', 'Child Mortality Rate (%)');
+    rightChoroplethMap = updateChoroplethMap(countryData, geoData, currentDataset, currentYear, rightChoroplethMap, '#right_choropleth', labelMap[currentDataset]['xAxisLabel']);
 });
