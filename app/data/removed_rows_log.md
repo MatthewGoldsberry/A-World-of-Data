@@ -1,3 +1,432 @@
+# Removed from access_to_electricity.csv
+
+| entity                                                   | code      |   year |   eg_elc_accs_zs |
+|:---------------------------------------------------------|:----------|-------:|-----------------:|
+| Channel Islands                                          | OWID_CIS  |   1990 |         100      |
+| Channel Islands                                          | OWID_CIS  |   1991 |         100      |
+| Channel Islands                                          | OWID_CIS  |   1992 |         100      |
+| Channel Islands                                          | OWID_CIS  |   1993 |         100      |
+| Channel Islands                                          | OWID_CIS  |   1994 |         100      |
+| Channel Islands                                          | OWID_CIS  |   1995 |         100      |
+| Channel Islands                                          | OWID_CIS  |   1996 |         100      |
+| Channel Islands                                          | OWID_CIS  |   1997 |         100      |
+| Channel Islands                                          | OWID_CIS  |   1998 |         100      |
+| Channel Islands                                          | OWID_CIS  |   1999 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2000 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2001 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2002 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2003 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2004 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2005 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2006 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2007 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2008 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2009 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2010 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2011 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2012 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2013 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2014 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2015 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2016 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2017 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2018 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2019 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2020 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2021 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2022 |         100      |
+| Channel Islands                                          | OWID_CIS  |   2023 |         100      |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2000 |          92.0618 |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2001 |          92.5438 |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2002 |          92.9649 |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2003 |          93.163  |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2004 |          93.9563 |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2005 |          93.5751 |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2006 |          94.6472 |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2007 |          94.6545 |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2008 |          95.2111 |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2009 |          94.9833 |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2010 |          95.5468 |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2011 |          96.0189 |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2012 |          96.2092 |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2013 |          96.4757 |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2014 |          96.6376 |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2015 |          96.9501 |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2016 |          97.0344 |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2017 |          97.6915 |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2018 |          97.661  |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2019 |          97.8752 |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2020 |          97.7976 |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2021 |          98.1534 |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2022 |          98.2139 |
+| East Asia and Pacific (WB)                               | WB_EAP    |   2023 |          98.4045 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   1990 |         100      |
+| Europe and Central Asia (WB)                             | WB_ECA    |   1991 |         100      |
+| Europe and Central Asia (WB)                             | WB_ECA    |   1992 |         100      |
+| Europe and Central Asia (WB)                             | WB_ECA    |   1993 |         100      |
+| Europe and Central Asia (WB)                             | WB_ECA    |   1994 |         100      |
+| Europe and Central Asia (WB)                             | WB_ECA    |   1995 |          99.9978 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   1996 |          99.9706 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   1997 |          99.9646 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   1998 |          99.9668 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   1999 |          99.8694 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2000 |          99.1153 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2001 |          99.1655 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2002 |          99.2039 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2003 |          99.213  |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2004 |          99.239  |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2005 |          99.2799 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2006 |          99.3014 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2007 |          99.3631 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2008 |          99.4081 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2009 |          99.4662 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2010 |          99.6654 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2011 |          99.6639 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2012 |          99.8282 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2013 |          99.8495 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2014 |          99.8761 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2015 |          99.1678 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2016 |          99.829  |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2017 |          99.9642 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2018 |          99.9708 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2019 |          99.9535 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2020 |          99.976  |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2021 |          99.9882 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2022 |          99.9977 |
+| Europe and Central Asia (WB)                             | WB_ECA    |   2023 |         100      |
+| European Union (27)                                      | OWID_EU27 |   1990 |         100      |
+| European Union (27)                                      | OWID_EU27 |   1991 |         100      |
+| European Union (27)                                      | OWID_EU27 |   1992 |         100      |
+| European Union (27)                                      | OWID_EU27 |   1993 |         100      |
+| European Union (27)                                      | OWID_EU27 |   1994 |         100      |
+| European Union (27)                                      | OWID_EU27 |   1995 |         100      |
+| European Union (27)                                      | OWID_EU27 |   1996 |         100      |
+| European Union (27)                                      | OWID_EU27 |   1997 |         100      |
+| European Union (27)                                      | OWID_EU27 |   1998 |         100      |
+| European Union (27)                                      | OWID_EU27 |   1999 |         100      |
+| European Union (27)                                      | OWID_EU27 |   2000 |          99.4762 |
+| European Union (27)                                      | OWID_EU27 |   2001 |          99.505  |
+| European Union (27)                                      | OWID_EU27 |   2002 |          99.5387 |
+| European Union (27)                                      | OWID_EU27 |   2003 |          99.554  |
+| European Union (27)                                      | OWID_EU27 |   2004 |          99.5758 |
+| European Union (27)                                      | OWID_EU27 |   2005 |          99.5914 |
+| European Union (27)                                      | OWID_EU27 |   2006 |          99.6188 |
+| European Union (27)                                      | OWID_EU27 |   2007 |          99.6464 |
+| European Union (27)                                      | OWID_EU27 |   2008 |          99.6825 |
+| European Union (27)                                      | OWID_EU27 |   2009 |          99.729  |
+| European Union (27)                                      | OWID_EU27 |   2010 |          99.7554 |
+| European Union (27)                                      | OWID_EU27 |   2011 |          99.7801 |
+| European Union (27)                                      | OWID_EU27 |   2012 |          99.8126 |
+| European Union (27)                                      | OWID_EU27 |   2013 |          99.8381 |
+| European Union (27)                                      | OWID_EU27 |   2014 |          99.8626 |
+| European Union (27)                                      | OWID_EU27 |   2015 |          99.8929 |
+| European Union (27)                                      | OWID_EU27 |   2016 |          99.9183 |
+| European Union (27)                                      | OWID_EU27 |   2017 |          99.971  |
+| European Union (27)                                      | OWID_EU27 |   2018 |          99.9717 |
+| European Union (27)                                      | OWID_EU27 |   2019 |          99.9882 |
+| European Union (27)                                      | OWID_EU27 |   2020 |          99.9956 |
+| European Union (27)                                      | OWID_EU27 |   2021 |          99.9971 |
+| European Union (27)                                      | OWID_EU27 |   2022 |         100      |
+| European Union (27)                                      | OWID_EU27 |   2023 |         100      |
+| High-income countries                                    | OWID_HIC  |   1990 |          99.841  |
+| High-income countries                                    | OWID_HIC  |   1991 |          99.8771 |
+| High-income countries                                    | OWID_HIC  |   1992 |          99.8662 |
+| High-income countries                                    | OWID_HIC  |   1993 |          99.8592 |
+| High-income countries                                    | OWID_HIC  |   1994 |          99.8623 |
+| High-income countries                                    | OWID_HIC  |   1995 |          99.8673 |
+| High-income countries                                    | OWID_HIC  |   1996 |          99.8646 |
+| High-income countries                                    | OWID_HIC  |   1997 |          99.8764 |
+| High-income countries                                    | OWID_HIC  |   1998 |          99.8907 |
+| High-income countries                                    | OWID_HIC  |   1999 |          99.8858 |
+| High-income countries                                    | OWID_HIC  |   2000 |          99.4416 |
+| High-income countries                                    | OWID_HIC  |   2001 |          99.4664 |
+| High-income countries                                    | OWID_HIC  |   2002 |          99.4863 |
+| High-income countries                                    | OWID_HIC  |   2003 |          99.5284 |
+| High-income countries                                    | OWID_HIC  |   2004 |          99.5232 |
+| High-income countries                                    | OWID_HIC  |   2005 |          99.5332 |
+| High-income countries                                    | OWID_HIC  |   2006 |          99.5844 |
+| High-income countries                                    | OWID_HIC  |   2007 |          99.5944 |
+| High-income countries                                    | OWID_HIC  |   2008 |          99.6251 |
+| High-income countries                                    | OWID_HIC  |   2009 |          99.6724 |
+| High-income countries                                    | OWID_HIC  |   2010 |          99.7819 |
+| High-income countries                                    | OWID_HIC  |   2011 |          99.7844 |
+| High-income countries                                    | OWID_HIC  |   2012 |          99.8951 |
+| High-income countries                                    | OWID_HIC  |   2013 |          99.8987 |
+| High-income countries                                    | OWID_HIC  |   2014 |          99.9172 |
+| High-income countries                                    | OWID_HIC  |   2015 |          99.4412 |
+| High-income countries                                    | OWID_HIC  |   2016 |          99.8749 |
+| High-income countries                                    | OWID_HIC  |   2017 |          99.9597 |
+| High-income countries                                    | OWID_HIC  |   2018 |          99.9627 |
+| High-income countries                                    | OWID_HIC  |   2019 |          99.9496 |
+| High-income countries                                    | OWID_HIC  |   2020 |          99.9683 |
+| High-income countries                                    | OWID_HIC  |   2021 |          99.9799 |
+| High-income countries                                    | OWID_HIC  |   2022 |          99.9798 |
+| High-income countries                                    | OWID_HIC  |   2023 |          99.9884 |
+| Kosovo                                                   | OWID_KOS  |   1990 |         100      |
+| Kosovo                                                   | OWID_KOS  |   1991 |         100      |
+| Kosovo                                                   | OWID_KOS  |   1992 |         100      |
+| Kosovo                                                   | OWID_KOS  |   1993 |         100      |
+| Kosovo                                                   | OWID_KOS  |   1994 |         100      |
+| Kosovo                                                   | OWID_KOS  |   1995 |         100      |
+| Kosovo                                                   | OWID_KOS  |   1996 |         100      |
+| Kosovo                                                   | OWID_KOS  |   1997 |         100      |
+| Kosovo                                                   | OWID_KOS  |   1998 |         100      |
+| Kosovo                                                   | OWID_KOS  |   1999 |         100      |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   1992 |          88.7345 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   1993 |          89.3435 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   1994 |          90.241  |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   1995 |          88.6213 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   1996 |          89.5763 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   1997 |          90.0309 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   1998 |          90.6483 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   1999 |          91.2576 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2000 |          91.7361 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2001 |          92.3325 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2002 |          92.6555 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2003 |          92.7384 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2004 |          93.2191 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2005 |          93.5227 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2006 |          94.2593 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2007 |          94.4765 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2008 |          95.2231 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2009 |          95.4267 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2010 |          95.879  |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2011 |          96.1841 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2012 |          96.5692 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2013 |          96.8647 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2014 |          97.054  |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2015 |          97.2847 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2016 |          97.4784 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2017 |          97.7106 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2018 |          97.7567 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2019 |          97.9982 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2020 |          98.15   |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2021 |          98.2756 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2022 |          98.5789 |
+| Latin America and Caribbean (WB)                         | WB_LAC    |   2023 |          98.4226 |
+| Low-income countries                                     | OWID_LIC  |   2000 |          16.6319 |
+| Low-income countries                                     | OWID_LIC  |   2001 |          18.1616 |
+| Low-income countries                                     | OWID_LIC  |   2002 |          18.6181 |
+| Low-income countries                                     | OWID_LIC  |   2003 |          20.3661 |
+| Low-income countries                                     | OWID_LIC  |   2004 |          20.9582 |
+| Low-income countries                                     | OWID_LIC  |   2005 |          20.9226 |
+| Low-income countries                                     | OWID_LIC  |   2006 |          22.9523 |
+| Low-income countries                                     | OWID_LIC  |   2007 |          24.4183 |
+| Low-income countries                                     | OWID_LIC  |   2008 |          23.4447 |
+| Low-income countries                                     | OWID_LIC  |   2009 |          24.9584 |
+| Low-income countries                                     | OWID_LIC  |   2010 |          26.4471 |
+| Low-income countries                                     | OWID_LIC  |   2011 |          27.6664 |
+| Low-income countries                                     | OWID_LIC  |   2012 |          30.0776 |
+| Low-income countries                                     | OWID_LIC  |   2013 |          31.0725 |
+| Low-income countries                                     | OWID_LIC  |   2014 |          33.4716 |
+| Low-income countries                                     | OWID_LIC  |   2015 |          33.0702 |
+| Low-income countries                                     | OWID_LIC  |   2016 |          36.4336 |
+| Low-income countries                                     | OWID_LIC  |   2017 |          38.1793 |
+| Low-income countries                                     | OWID_LIC  |   2018 |          39.6838 |
+| Low-income countries                                     | OWID_LIC  |   2019 |          40.7021 |
+| Low-income countries                                     | OWID_LIC  |   2020 |          41.7368 |
+| Low-income countries                                     | OWID_LIC  |   2021 |          43.0155 |
+| Low-income countries                                     | OWID_LIC  |   2022 |          43.0061 |
+| Low-income countries                                     | OWID_LIC  |   2023 |          45.2722 |
+| Lower-middle-income countries                            | OWID_LMC  |   1993 |          47.1482 |
+| Lower-middle-income countries                            | OWID_LMC  |   1994 |          47.1086 |
+| Lower-middle-income countries                            | OWID_LMC  |   1995 |          48.3439 |
+| Lower-middle-income countries                            | OWID_LMC  |   1996 |          50.0543 |
+| Lower-middle-income countries                            | OWID_LMC  |   1997 |          52.6383 |
+| Lower-middle-income countries                            | OWID_LMC  |   1998 |          55.5538 |
+| Lower-middle-income countries                            | OWID_LMC  |   1999 |          58.0699 |
+| Lower-middle-income countries                            | OWID_LMC  |   2000 |          58.1811 |
+| Lower-middle-income countries                            | OWID_LMC  |   2001 |          59.353  |
+| Lower-middle-income countries                            | OWID_LMC  |   2002 |          60.3261 |
+| Lower-middle-income countries                            | OWID_LMC  |   2003 |          62.7215 |
+| Lower-middle-income countries                            | OWID_LMC  |   2004 |          62.54   |
+| Lower-middle-income countries                            | OWID_LMC  |   2005 |          65.2484 |
+| Lower-middle-income countries                            | OWID_LMC  |   2006 |          65.9772 |
+| Lower-middle-income countries                            | OWID_LMC  |   2007 |          67.9438 |
+| Lower-middle-income countries                            | OWID_LMC  |   2008 |          69.8332 |
+| Lower-middle-income countries                            | OWID_LMC  |   2009 |          70.584  |
+| Lower-middle-income countries                            | OWID_LMC  |   2010 |          71.6877 |
+| Lower-middle-income countries                            | OWID_LMC  |   2011 |          74.6037 |
+| Lower-middle-income countries                            | OWID_LMC  |   2012 |          75.1541 |
+| Lower-middle-income countries                            | OWID_LMC  |   2013 |          77.1189 |
+| Lower-middle-income countries                            | OWID_LMC  |   2014 |          78.2897 |
+| Lower-middle-income countries                            | OWID_LMC  |   2015 |          80.6587 |
+| Lower-middle-income countries                            | OWID_LMC  |   2016 |          82.7167 |
+| Lower-middle-income countries                            | OWID_LMC  |   2017 |          84.6592 |
+| Lower-middle-income countries                            | OWID_LMC  |   2018 |          86.9122 |
+| Lower-middle-income countries                            | OWID_LMC  |   2019 |          87.6135 |
+| Lower-middle-income countries                            | OWID_LMC  |   2020 |          88.3804 |
+| Lower-middle-income countries                            | OWID_LMC  |   2021 |          90.5557 |
+| Lower-middle-income countries                            | OWID_LMC  |   2022 |          90.5768 |
+| Lower-middle-income countries                            | OWID_LMC  |   2023 |          91.2681 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2000 |          82.5699 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2001 |          83.2792 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2002 |          83.6086 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2003 |          84.5846 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2004 |          84.9804 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2005 |          85.9579 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2006 |          87.6566 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2007 |          87.1519 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2008 |          88.0947 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2009 |          88.7403 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2010 |          90.5608 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2011 |          90.7762 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2012 |          91.8541 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2013 |          93.148  |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2014 |          94.0321 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2015 |          93.4361 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2016 |          95.1588 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2017 |          96.0012 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2018 |          94.9707 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2019 |          96.0087 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2020 |          96.2621 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2021 |          96.4167 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2022 |          95.8638 |
+| Middle East, North Africa, Afghanistan and Pakistan (WB) | WB_MENAP  |   2023 |          96.4226 |
+| North America (WB)                                       | WB_NA     |   1990 |         100      |
+| North America (WB)                                       | WB_NA     |   1991 |         100      |
+| North America (WB)                                       | WB_NA     |   1992 |         100      |
+| North America (WB)                                       | WB_NA     |   1993 |         100      |
+| North America (WB)                                       | WB_NA     |   1994 |         100      |
+| North America (WB)                                       | WB_NA     |   1995 |         100      |
+| North America (WB)                                       | WB_NA     |   1996 |         100      |
+| North America (WB)                                       | WB_NA     |   1997 |         100      |
+| North America (WB)                                       | WB_NA     |   1998 |         100      |
+| North America (WB)                                       | WB_NA     |   1999 |         100      |
+| North America (WB)                                       | WB_NA     |   2000 |         100      |
+| North America (WB)                                       | WB_NA     |   2001 |         100      |
+| North America (WB)                                       | WB_NA     |   2002 |         100      |
+| North America (WB)                                       | WB_NA     |   2003 |         100      |
+| North America (WB)                                       | WB_NA     |   2004 |         100      |
+| North America (WB)                                       | WB_NA     |   2005 |         100      |
+| North America (WB)                                       | WB_NA     |   2006 |         100      |
+| North America (WB)                                       | WB_NA     |   2007 |         100      |
+| North America (WB)                                       | WB_NA     |   2008 |         100      |
+| North America (WB)                                       | WB_NA     |   2009 |         100      |
+| North America (WB)                                       | WB_NA     |   2010 |         100      |
+| North America (WB)                                       | WB_NA     |   2011 |         100      |
+| North America (WB)                                       | WB_NA     |   2012 |         100      |
+| North America (WB)                                       | WB_NA     |   2013 |         100      |
+| North America (WB)                                       | WB_NA     |   2014 |         100      |
+| North America (WB)                                       | WB_NA     |   2015 |         100      |
+| North America (WB)                                       | WB_NA     |   2016 |         100      |
+| North America (WB)                                       | WB_NA     |   2017 |         100      |
+| North America (WB)                                       | WB_NA     |   2018 |         100      |
+| North America (WB)                                       | WB_NA     |   2019 |         100      |
+| North America (WB)                                       | WB_NA     |   2020 |         100      |
+| North America (WB)                                       | WB_NA     |   2021 |         100      |
+| North America (WB)                                       | WB_NA     |   2022 |         100      |
+| North America (WB)                                       | WB_NA     |   2023 |         100      |
+| South Asia (WB)                                          | WB_SA     |   1993 |          46.564  |
+| South Asia (WB)                                          | WB_SA     |   1994 |          46.1822 |
+| South Asia (WB)                                          | WB_SA     |   1995 |          47.6647 |
+| South Asia (WB)                                          | WB_SA     |   1996 |          48.7665 |
+| South Asia (WB)                                          | WB_SA     |   1997 |          50.296  |
+| South Asia (WB)                                          | WB_SA     |   1998 |          52.2304 |
+| South Asia (WB)                                          | WB_SA     |   1999 |          56.0177 |
+| South Asia (WB)                                          | WB_SA     |   2000 |          56.7665 |
+| South Asia (WB)                                          | WB_SA     |   2001 |          58.3485 |
+| South Asia (WB)                                          | WB_SA     |   2002 |          59.4158 |
+| South Asia (WB)                                          | WB_SA     |   2003 |          62.3411 |
+| South Asia (WB)                                          | WB_SA     |   2004 |          61.4843 |
+| South Asia (WB)                                          | WB_SA     |   2005 |          65.8536 |
+| South Asia (WB)                                          | WB_SA     |   2006 |          65.925  |
+| South Asia (WB)                                          | WB_SA     |   2007 |          69.2849 |
+| South Asia (WB)                                          | WB_SA     |   2008 |          71.7783 |
+| South Asia (WB)                                          | WB_SA     |   2009 |          72.9866 |
+| South Asia (WB)                                          | WB_SA     |   2010 |          74.0766 |
+| South Asia (WB)                                          | WB_SA     |   2011 |          77.3092 |
+| South Asia (WB)                                          | WB_SA     |   2012 |          78.4196 |
+| South Asia (WB)                                          | WB_SA     |   2013 |          80.8474 |
+| South Asia (WB)                                          | WB_SA     |   2014 |          82.848  |
+| South Asia (WB)                                          | WB_SA     |   2015 |          86.5328 |
+| South Asia (WB)                                          | WB_SA     |   2016 |          88.3184 |
+| South Asia (WB)                                          | WB_SA     |   2017 |          91.3984 |
+| South Asia (WB)                                          | WB_SA     |   2018 |          94.8192 |
+| South Asia (WB)                                          | WB_SA     |   2019 |          95.4699 |
+| South Asia (WB)                                          | WB_SA     |   2020 |          96.4014 |
+| South Asia (WB)                                          | WB_SA     |   2021 |          99.3693 |
+| South Asia (WB)                                          | WB_SA     |   2022 |          99.0895 |
+| South Asia (WB)                                          | WB_SA     |   2023 |          99.4088 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   1996 |          28.5124 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   1997 |          28.3636 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   1998 |          28.5599 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   1999 |          30.1395 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2000 |          25.7008 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2001 |          26.1607 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2002 |          27.3365 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2003 |          29.5929 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2004 |          29.37   |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2005 |          29.353  |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2006 |          31.2016 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2007 |          32.518  |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2008 |          32.4034 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2009 |          32.6264 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2010 |          33.3352 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2011 |          35.9008 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2012 |          36.7763 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2013 |          38.032  |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2014 |          38.3545 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2015 |          39.1996 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2016 |          43.8302 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2017 |          43.7628 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2018 |          46.4167 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2019 |          47.1974 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2020 |          48.545  |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2021 |          50.6566 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2022 |          51.5874 |
+| Sub-Saharan Africa (WB)                                  | WB_SSA    |   2023 |          53.2559 |
+| Upper-middle-income countries                            | OWID_UMC  |   2000 |          94.3602 |
+| Upper-middle-income countries                            | OWID_UMC  |   2001 |          94.8465 |
+| Upper-middle-income countries                            | OWID_UMC  |   2002 |          95.3    |
+| Upper-middle-income countries                            | OWID_UMC  |   2003 |          95.5085 |
+| Upper-middle-income countries                            | OWID_UMC  |   2004 |          95.8757 |
+| Upper-middle-income countries                            | OWID_UMC  |   2005 |          95.7243 |
+| Upper-middle-income countries                            | OWID_UMC  |   2006 |          96.6831 |
+| Upper-middle-income countries                            | OWID_UMC  |   2007 |          96.8312 |
+| Upper-middle-income countries                            | OWID_UMC  |   2008 |          97.3007 |
+| Upper-middle-income countries                            | OWID_UMC  |   2009 |          97.7116 |
+| Upper-middle-income countries                            | OWID_UMC  |   2010 |          98.2013 |
+| Upper-middle-income countries                            | OWID_UMC  |   2011 |          98.4157 |
+| Upper-middle-income countries                            | OWID_UMC  |   2012 |          98.6508 |
+| Upper-middle-income countries                            | OWID_UMC  |   2013 |          98.8164 |
+| Upper-middle-income countries                            | OWID_UMC  |   2014 |          98.9185 |
+| Upper-middle-income countries                            | OWID_UMC  |   2015 |          98.9984 |
+| Upper-middle-income countries                            | OWID_UMC  |   2016 |          99.0345 |
+| Upper-middle-income countries                            | OWID_UMC  |   2017 |          99.1608 |
+| Upper-middle-income countries                            | OWID_UMC  |   2018 |          99.1796 |
+| Upper-middle-income countries                            | OWID_UMC  |   2019 |          99.2771 |
+| Upper-middle-income countries                            | OWID_UMC  |   2020 |          99.2176 |
+| Upper-middle-income countries                            | OWID_UMC  |   2021 |          99.4356 |
+| Upper-middle-income countries                            | OWID_UMC  |   2022 |          99.5089 |
+| Upper-middle-income countries                            | OWID_UMC  |   2023 |          99.4286 |
+| World                                                    | OWID_WRL  |   1998 |          73.1962 |
+| World                                                    | OWID_WRL  |   1999 |          74.5032 |
+| World                                                    | OWID_WRL  |   2000 |          78.2214 |
+| World                                                    | OWID_WRL  |   2001 |          78.7152 |
+| World                                                    | OWID_WRL  |   2002 |          79.1008 |
+| World                                                    | OWID_WRL  |   2003 |          79.9649 |
+| World                                                    | OWID_WRL  |   2004 |          79.9522 |
+| World                                                    | OWID_WRL  |   2005 |          80.7013 |
+| World                                                    | OWID_WRL  |   2006 |          81.3535 |
+| World                                                    | OWID_WRL  |   2007 |          81.9712 |
+| World                                                    | OWID_WRL  |   2008 |          82.6682 |
+| World                                                    | OWID_WRL  |   2009 |          82.8658 |
+| World                                                    | OWID_WRL  |   2010 |          83.4471 |
+| World                                                    | OWID_WRL  |   2011 |          84.5062 |
+| World                                                    | OWID_WRL  |   2012 |          84.9363 |
+| World                                                    | OWID_WRL  |   2013 |          85.7107 |
+| World                                                    | OWID_WRL  |   2014 |          86.1956 |
+| World                                                    | OWID_WRL  |   2015 |          86.924  |
+| World                                                    | OWID_WRL  |   2016 |          88.1045 |
+| World                                                    | OWID_WRL  |   2017 |          88.9318 |
+| World                                                    | OWID_WRL  |   2018 |          89.7974 |
+| World                                                    | OWID_WRL  |   2019 |          90.1084 |
+| World                                                    | OWID_WRL  |   2020 |          90.3957 |
+| World                                                    | OWID_WRL  |   2021 |          91.3343 |
+| World                                                    | OWID_WRL  |   2022 |          91.2883 |
+| World                                                    | OWID_WRL  |   2023 |          91.5992 |
+
 # Removed from child_mortality_rate.csv
 
 | entity                        | code     |   year |   child_mortality_rate |
