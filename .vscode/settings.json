@@ -21,6 +21,7 @@
   // Tell VS Code to look for the virtual environment created by 'uv'
   "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
   "cSpell.words": [
+    "Choropleth",
     "Scatterplot"
   ]
 }
