@@ -76,14 +76,12 @@ class Histogram {
             .attr('transform', 'rotate(-90)')
             .attr('y', 0 - vis.config.margin.left + 15)
             .attr('x', 0 - (vis.height / 2))
-            .style('font-size', '1.1rem')
             .text(vis.config.yAxisLabel);
 
         vis.chart.append('text') // x-axis
             .attr('class', 'axis-title')
             .attr('x', vis.width / 2)
             .attr('y', vis.height + vis.config.margin.bottom - 5)
-            .style('font-size', '1.1rem')
             .text(vis.config.xAxisLabel);
 
         // render initial visualization

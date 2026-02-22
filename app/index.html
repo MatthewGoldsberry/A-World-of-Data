@@ -8,37 +8,49 @@
 </head>
 
 <body>
-    <!-- Page Title -->
-    <header class="page-header">
-        <h1 class="page-title">Understanding Global Child Mortality Trends</h1>
-        <p class="author">Matthew Goldsberry</p>
-    </header>
-
-    <!-- Charts -->
-    <div class="chart-row-container">
-        <div class="chart-row two-charts">
-            <svg id="sanitation_histogram"></svg>
+    <main class="grid-container">
+        <div class="column side-column">
+            <svg id="child_mortality_choropleth"></svg>
+            <div class="chart-title-between">
+                <div class="faux-box">Under-Five Mortality Rate</div>
+            </div>
             <svg id="child_mortality_histogram"></svg>
         </div>
-    </div>
-    <div class="chart-row-container">
-        <div class="chart-row">
-            <svg id="scatterplot"></svg>
-        </div>
-    </div>
-    <div class="chart-row-container">
-        <div class="chart-row">
-            <svg id="sanitation_map"></svg>
-        </div>
-    </div>
 
-    <!-- TODO Make Footer Highlight Data Sources -->
-    <p>All data source from Our World in Data</p>
+        <div class="column center-column">
+            <header class="page-header">
+                <h1 class="page-title">Understanding Global Child Mortality Trends</h1>
+                <p class="author">Matthew Goldsberry</p>
+            </header>
+            <div class="scatter-card">
+                <div class="main-chart-wrapper">
+                    <svg id="scatterplot"></svg>
+                </div>
+                <div class="slider-wrapper">
+                    <input type="range" id="yearSlider">
+                </div>
+            </div>
+        </div>
+
+        <div class="column side-column">
+            <svg id="sanitation_choropleth"></svg>
+            <div class="chart-title-between">
+                <select id="data-selector">
+                    <option value="sanitation">Pop. Using at Least Basic Sanitation (%)</option>
+                    <option value="test">test</option>
+                </select>
+            </div>
+            <svg id="sanitation_histogram"></svg>
+        </div>
+    </main>
+
+    <footer class="page-footer">
+        <p>All data sourced from <strong><a class="hyperlink" href="https://ourworldindata.org/">Our World in
+                    Data</a></strong></p>
+    </footer>
 
     <!-- Load js Scripts -->
-    <!-- D3 -->
-    <script src="js/d3.v6.min.js"></script>
-    <!-- Vis js Scripts -->
+    <script src=" js/d3.v6.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/histogram.js"></script>
     <script src="js/scatterplot.js"></script>
