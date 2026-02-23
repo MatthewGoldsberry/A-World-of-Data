@@ -10,9 +10,9 @@ d3.select('#data-selector').on('change', function () {
     currentDataset = d3.select(this).property('value');
 
     // add the new svgs with the selected dataset
-    rightHistogram = updateHistogram(countryData, currentDataset, currentYear, rightHistogram, '#right_histogram', labelMap[currentDataset]['xAxisLabel'])
-    scatterplot = updateScatterplot(countryData, currentDataset, 'lifeExpectancy', currentYear, scatterplot, '#scatterplot', labelMap[currentDataset]['scatterTitle'], labelMap[currentDataset]['xAxisLabel'])
-    rightChoroplethMap = updateChoroplethMap(countryData, geoData, currentDataset, currentYear, rightChoroplethMap, '#right_choropleth', labelMap[currentDataset]['xAxisLabel'])
+    rightHistogram = updateHistogram(countryData, currentDataset, currentYear, rightHistogram, '#right_histogram', labelMap[currentDataset]['xAxisLabel'], labelMap[currentDataset]['unit'])
+    scatterplot = updateScatterplot(countryData, currentDataset, 'lifeExpectancy', currentYear, scatterplot, '#scatterplot', labelMap[currentDataset]['scatterTitle'], labelMap[currentDataset]['xAxisLabel'], labelMap[currentDataset]['unit'])
+    rightChoroplethMap = updateChoroplethMap(countryData, geoData, currentDataset, currentYear, rightChoroplethMap, '#right_choropleth', labelMap[currentDataset]['xAxisLabel'], labelMap[currentDataset]['unit'])
 });
 
 /**
@@ -24,11 +24,11 @@ d3.select('#yearSlider').on('input', function () {
     d3.select('#active-year').text(currentYear);
 
     // re-render everything with the new currentYear and currentDataset
-    lifeExpectancyHistogram = updateHistogram(countryData, 'lifeExpectancy', currentYear, lifeExpectancyHistogram, '#life_expectancy_histogram', 'Life Expectancy (years)');
-    rightHistogram = updateHistogram(countryData, currentDataset, currentYear, rightHistogram, '#right_histogram', labelMap[currentDataset]['xAxisLabel']);
-    scatterplot = updateScatterplot(countryData, currentDataset, 'lifeExpectancy', currentYear, scatterplot, '#scatterplot', labelMap[currentDataset]['scatterTitle'], labelMap[currentDataset]['xAxisLabel']);
-    lifeExpectancyChoroplethMap = updateChoroplethMap(countryData, geoData, 'lifeExpectancy', currentYear, lifeExpectancyChoroplethMap, '#life_expectancy_choropleth', 'Life Expectancy (years)');
-    rightChoroplethMap = updateChoroplethMap(countryData, geoData, currentDataset, currentYear, rightChoroplethMap, '#right_choropleth', labelMap[currentDataset]['xAxisLabel']);
+    lifeExpectancyHistogram = updateHistogram(countryData, 'lifeExpectancy', currentYear, lifeExpectancyHistogram, '#life_expectancy_histogram', 'Life Expectancy (years)', 'years');
+    rightHistogram = updateHistogram(countryData, currentDataset, currentYear, rightHistogram, '#right_histogram', labelMap[currentDataset]['xAxisLabel'], labelMap[currentDataset]['unit']);
+    scatterplot = updateScatterplot(countryData, currentDataset, 'lifeExpectancy', currentYear, scatterplot, '#scatterplot', labelMap[currentDataset]['scatterTitle'], labelMap[currentDataset]['xAxisLabel'], labelMap[currentDataset]['unit']);
+    lifeExpectancyChoroplethMap = updateChoroplethMap(countryData, geoData, 'lifeExpectancy', currentYear, lifeExpectancyChoroplethMap, '#life_expectancy_choropleth', 'Life Expectancy (years)', 'years');
+    rightChoroplethMap = updateChoroplethMap(countryData, geoData, currentDataset, currentYear, rightChoroplethMap, '#right_choropleth', labelMap[currentDataset]['xAxisLabel'], labelMap[currentDataset]['unit']);
 });
 
 /**
