@@ -134,6 +134,10 @@ class Histogram {
         // hover handler to highlight all instances of hovered bin in page
         vis.chart.selectAll('.bar')
             .on('mouseover', (event, d) => {
+                // highlight countries in bin
+                const countriesInBin = d.map(c => c.entity);
+                highlightCountries(countriesInBin);
+
                 // tooltip creation
 
                 // set the tool tip position and automatically handle if it was going to be off page
@@ -167,7 +171,11 @@ class Histogram {
                 // set the x position of the tooltip
                 tooltip.style('left', xPosition + 'px')
             })
-            .on('mouseout', () => { d3.select('#tooltip').style('display', 'none'); }); // remove tooltip
+            .on('mouseout', () => {
+                unhighlightCountry();
+                // remove tooltip
+                d3.select('#tooltip').style('display', 'none');
+            });
 
         // update axis
         vis.xAxisG.call(vis.xAxis);

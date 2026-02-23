@@ -43,35 +43,54 @@ d3.select('#yearSlider').on('input', function () {
 
 /**
  * Normalizes a class name into format that can become a CSS label
- * @param {*} name - class name
+ * @param {string} name - class name
  * @returns - CSS-compatible representation of the class name
  */
 function normalizeClassName(name) {
     if (!name) return 'unknown';
-    return name.replace(/[\s']/g, '-').replace(/[.,]/g, '');
+    return name.replace(/[\s']/g, '-').replace(/[^a-zA-Z0-9-]/g, '').replace(/[.,]/g, '');
 }
 
 /**
- * Highlights the specified country in all visualizations, while dimming all others
- * @param {*} countryName - name of country to focus
+ * Highlights the specified countries in all visualizations, while dimming all others
+ * @param {Array<string>} countryNames - name of countries to focus
  */
-function highlightCountry(countryName) {
-    const className = `.country-${normalizeClassName(countryName)}`;
+function highlightCountries(countryNames) {
+    // early exit if countryNames has no values
+    if (!countryNames || countryNames.length === 0) return;
 
     // dim everything in all SVGs
     d3.selectAll('.bar, .symbol, .country').classed('unfocused', true);
 
+    // combine country names into a CSS selector for all countries in the list
+    const selectors = countryNames.map(name => { return `.country-${normalizeClassName(name)}`; }).join(', ');
+
     // highlight the specific country in all visualizations
-    d3.selectAll(className).classed('unfocused', false).classed('focused', true);
+    d3.selectAll(selectors).classed('unfocused', false).classed('focused', true);
 
     // go into each histogram and figure out which bin the country is in, then focus that bin
     [childMortalityHistogram, rightHistogram].forEach(vis => {
-        const binIndex = vis.bins.findIndex(bin => bin.some(d => d.entity === countryName));
-        if (binIndex !== -1) {
+        vis.bins.forEach((bin, i) => {
+            // look if the bin has any of the countries in countryNames in it
+            const hasCountry = bin.some(d => {
+                const dName = d.entity || (d.properties && d.properties.name);
+                return countryNames.includes(dName);
+            });
+
             // remove the unfocused tag and add focused to found bin containing the country
-            vis.chart.select(`.bar-bin-${binIndex}`).classed('unfocused', false).classed('focused', true);
-        }
+            if (hasCountry) {
+                vis.chart.select(`.bar-bin-${i}`).classed('unfocused', false).classed('focused', true);
+            }
+        });
     });
+}
+
+/**
+ * Wrapper around highlightCountries that takes a single countryName as an argument
+ * @param {string} countryName - name of country to focus
+ */
+function highlightCountry(countryName) {
+    highlightCountries([countryName]);
 }
 
 /**
