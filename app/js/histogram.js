@@ -127,7 +127,8 @@ class Histogram {
             .attr('y', d => vis.yScale(d.length))
             .attr('x', d => vis.xScale(d.x0))
             .attr('fill', (d, i) => { return vis.colors[i] || vis.colors[vis.colors.length - 1]; })
-            .attr('stroke', 'black');
+            .attr('stroke', 'black')
+            .attr('class', (d, i) => `bar bar-bin-${i}`);
 
         // update axis
         vis.xAxisG.call(vis.xAxis);

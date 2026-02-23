@@ -162,7 +162,18 @@ class ChoroplethMap {
                 }
             })
             .attr('stroke', 'black')
-            .attr('stroke-width', 0.5);
+            .attr('stroke-width', 0.5)
+            .attr('class', d => `country country-${normalizeClassName(d.properties.name)}`);
+
+        // hover handler to highlight all instances of hovered country in page
+        vis.chart.selectAll('.country')
+            .on('mouseover', (event, d) => {
+                // only highlight countries that have data
+                if (d.properties.value !== null) {
+                    highlightCountry(d.properties.name);
+                }
+            })
+            .on('mouseout', unhighlightCountry);
 
         // calculate tick values
         const domain = vis.colorScale.domain();

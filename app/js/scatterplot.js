@@ -127,16 +127,21 @@ class Scatterplot {
             .data(vis.data)
             .join('circle')
             .attr('class', 'symbol')
-            .attr('transform', d => `translate(${vis.xScale(vis.xValue(d))}, ${vis.yScale(vis.yValue(d))})`);
+            .attr('transform', d => `translate(${vis.xScale(vis.xValue(d))}, ${vis.yScale(vis.yValue(d))})`)
+            .attr('class', d => `symbol country-${normalizeClassName(d.entity)}`); // Add unique ID class;
+
+
+        // hover handler to highlight all instances of hovered country in page
+        vis.chart.selectAll('.symbol')
+            .on('mouseover', (event, d) => highlightCountry(d.entity))
+            .on('mouseout', unhighlightCountry);
 
         // update the axes and gridlines
-        vis.xAxisG
-            .call(vis.xAxis);
+        vis.xAxisG.call(vis.xAxis);
         vis.xAxisG.selectAll('.tick text')
             .style('font-size', '0.85rem');
 
-        vis.yAxisG
-            .call(vis.yAxis);
+        vis.yAxisG.call(vis.yAxis);
         vis.yAxisG.selectAll('.tick text')
             .style('font-size', '0.85rem');
     }

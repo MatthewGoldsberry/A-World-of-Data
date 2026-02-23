@@ -257,6 +257,23 @@ body {
     margin-bottom: 0;
 }
 
+/* --- Focussing Configurations -- */
+
+.bar,
+.symbol,
+.country-path {
+    transition: opacity 0.2s ease;
+}
+
+.unfocused {
+    opacity: 0.25;
+}
+
+.focused {
+    stroke: black;
+    stroke-width: 1px;
+}
+
 /* --- D3 Chart Configurations --- */
 
 /* General Chart CSS */
