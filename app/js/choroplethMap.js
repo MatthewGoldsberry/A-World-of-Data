@@ -1,3 +1,21 @@
+// mapping for inconsistent country names between datasets {nameFromGeoJSON : nameFromCSV}
+// this is done to generate a country-${name} that is consistent with other visualizations
+const countryNameReverseMapping = {
+    'USA': 'United States',
+    'Ivory Coast': "Cote d'Ivoire",
+    'Czech Republic': 'Czechia',
+    'Democratic Republic of the Congo': 'Democratic Republic of Congo',
+    'United Republic of Tanzania': 'Tanzania',
+    'Republic of Serbia': 'Serbia',
+    'The Bahamas': 'Bahamas',
+    'Republic of the Congo': 'Congo',
+    'Swaziland': 'Eswatini',
+    'Macedonia': 'North Macedonia',
+    'Guinea Bissau': 'Guinea-Bissau',
+    'West Bank': 'Palestine',
+    'England': 'United Kingdom',
+}
+
 /**
  * ChoroplethMap object class 
  */
@@ -164,14 +182,14 @@ class ChoroplethMap {
             })
             .attr('stroke', 'black')
             .attr('stroke-width', 0.5)
-            .attr('class', d => `country country-${normalizeClassName(d.properties.name)}`);
+            .attr('class', d => `country country-${normalizeClassName(countryNameReverseMapping[d.properties.name] || d.properties.name)}`);
 
         // hover handler to highlight all instances of hovered country in page
         vis.chart.selectAll('.country')
             .on('mouseover', (event, d) => {
                 // only highlight countries that have data
                 if (d.properties.value !== null) {
-                    highlightCountry(d.properties.name);
+                    highlightCountry(countryNameReverseMapping[d.properties.name] || d.properties.name);
                 }
 
                 // tooltip creation

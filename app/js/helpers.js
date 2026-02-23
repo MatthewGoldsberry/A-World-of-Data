@@ -65,7 +65,6 @@ function updateScatterplot(data, xValueKey, yValueKey, year, scatterplot, parent
 // mapping for inconsistent country names between datasets {nameFromCSV : nameFromGeoJSON}
 const countryNameMapping = {
     'United States': 'USA',
-    'United States': 'USA',
     "Cote d'Ivoire": 'Ivory Coast',
     'Czechia': 'Czech Republic',
     'Democratic Republic of Congo': 'Democratic Republic of the Congo',
