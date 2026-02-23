@@ -8,7 +8,6 @@
 d3.select('#data-selector').on('change', function () {
     // get the selected value from user
     currentDataset = d3.select(this).property('value');
-    console.log(currentDataset);
 
     // add the new svgs with the selected dataset
     rightHistogram = updateHistogram(countryData, currentDataset, currentYear, rightHistogram, '#right_histogram', labelMap[currentDataset]['xAxisLabel'])
