@@ -52,18 +52,25 @@ function normalizeClassName(name) {
 }
 
 /**
- * Highlights the specified countries in all visualizations, while dimming all others
- * @param {Array<string>} countryNames - name of countries to focus
+ * Highlights the selected countries and all countries currently being hovered in all visualizations, while dimming all others
+ * @param {Array<string>} hoveredNames - name of countries that are currently being hovered
  */
-function highlightCountries(countryNames) {
-    // early exit if countryNames has no values
-    if (!countryNames || countryNames.length === 0) return;
+function highlightCountries(hoveredNames = []) {
+    // combine hovered with selectedCountries to ensure everything that needs to get highlighted gets handled below
+    // the set allows for an easy method to clean out any duplicate values
+    const namesToFocus = [...new Set([...hoveredNames, ...selectedCountries])];
+
+    // early exit if there are no hovered elements or selected countries
+    if (namesToFocus.length === 0) {
+        unhighlightCountry();
+        return;
+    }
 
     // dim everything in all SVGs
     d3.selectAll('.bar, .symbol, .country').classed('unfocused', true);
 
     // combine country names into a CSS selector for all countries in the list
-    const selectors = countryNames.map(name => { return `.country-${normalizeClassName(name)}`; }).join(', ');
+    const selectors = namesToFocus.map(name => { return `.country-${normalizeClassName(name)}`; }).join(', ');
 
     // highlight the specific country in all visualizations
     d3.selectAll(selectors).classed('unfocused', false).classed('focused', true);
@@ -71,10 +78,10 @@ function highlightCountries(countryNames) {
     // go into each histogram and figure out which bin the country is in, then focus that bin
     [childMortalityHistogram, rightHistogram].forEach(vis => {
         vis.bins.forEach((bin, i) => {
-            // look if the bin has any of the countries in countryNames in it
+            // look if the bin has any of the countries in namesToFocus in it
             const hasCountry = bin.some(d => {
                 const dName = d.entity || (d.properties && d.properties.name);
-                return countryNames.includes(dName);
+                return namesToFocus.includes(dName);
             });
 
             // remove the unfocused tag and add focused to found bin containing the country
@@ -97,7 +104,61 @@ function highlightCountry(countryName) {
  * Removes unfocused and focused tags from all countries to reset visualizations to normal view
  */
 function unhighlightCountry() {
-    d3.selectAll('.bar, .symbol, .country')
-        .classed('unfocused', false)
-        .classed('focused', false);
+    if (selectedCountries.length > 0) {
+        highlightCountries();
+    } else {
+        d3.selectAll('.bar, .symbol, .country')
+            .classed('unfocused', false)
+            .classed('focused', false);
+    }
 }
+
+/**
+ * Brushing Implementation 
+ */
+
+/**
+ * Handles logic of adding / removing countries from the selection
+ * 
+ * If all of the country names already exists in selectedCountries, that list is removed
+ * If not all of the country names exist in selectedCountries, all of the names not already in are added 
+ * @param {*} countryNames - list of country names
+ */
+function handleSelections(countryNames) {
+    // if all of the countries already are in selectedCountries remove them
+    const alreadySelected = countryNames.every(name => selectedCountries.includes(name));
+    if (alreadySelected) {
+        selectedCountries = selectedCountries.filter(name => !countryNames.includes(name));
+    } else { // since countries are not all 
+        countryNames.forEach(name => {
+            if (!selectedCountries.includes(name)) { selectedCountries.push(name); }
+        })
+    }
+
+    highlightCountries();
+}
+
+/**
+ * Wrapper around handleSelections that takes a single countryName as an argument
+ * @param {string} countryName - name of country to add to selection
+ */
+function handleSelection(countryName) {
+    handleSelections([countryName]);
+}
+
+/**
+ * Resets the selection and updates it visually 
+ */
+function resetSelection() {
+    selectedCountries = [];
+    unhighlightCountry();
+}
+
+/**
+ * Handler for the 'escape' key which triggers a reset of the selected countries
+ */
+window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        resetSelection();
+    }
+})

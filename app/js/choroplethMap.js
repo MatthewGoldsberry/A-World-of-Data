@@ -235,6 +235,9 @@ class ChoroplethMap {
 
                 // remove tooltip 
                 d3.select('#tooltip').style('display', 'none');
+            })
+            .on('click', (event, d) => { // selections
+                handleSelection(countryNameReverseMapping[d.properties.name] || d.properties.name);
             });
 
         // calculate tick values

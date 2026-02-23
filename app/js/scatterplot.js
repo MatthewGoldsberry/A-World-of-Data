@@ -159,6 +159,9 @@ class Scatterplot {
 
                 // remove tooltip 
                 d3.select('#tooltip').style('display', 'none');
+            })
+            .on('click', (event, d) => { // selections
+                handleSelection(d.entity);
             });
 
         // update the axes and gridlines

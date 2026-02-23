@@ -135,8 +135,7 @@ class Histogram {
         vis.chart.selectAll('.bar')
             .on('mouseover', (event, d) => {
                 // highlight countries in bin
-                const countriesInBin = d.map(c => c.entity);
-                highlightCountries(countriesInBin);
+                highlightCountries(d.map(c => c.entity));
 
                 // tooltip creation
 
@@ -175,6 +174,9 @@ class Histogram {
                 unhighlightCountry();
                 // remove tooltip
                 d3.select('#tooltip').style('display', 'none');
+            })
+            .on('click', (event, d) => { // selections
+                handleSelections(d.map(c => c.entity));
             });
 
         // update axis

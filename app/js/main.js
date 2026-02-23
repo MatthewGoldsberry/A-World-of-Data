@@ -28,6 +28,7 @@ let CountryData;
 // global user selections
 let currentDataset;
 let currentYear;
+let selectedCountries = [];
 
 // load datasets
 Promise.all([
