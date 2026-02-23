@@ -33,6 +33,7 @@ class ChoroplethMap {
      *  - legendRectHeight: height of legend bar
      *  - legendRectWidth: length of legend bar
      *  - legendLabel: label for legend
+     *  - unit: unit of data
      * @param {Array} _data
      */
     constructor(_config, _data) {
@@ -48,6 +49,7 @@ class ChoroplethMap {
             legendRectHeight: _config.legendRectHeight || 15,
             legendRectWidth: _config.legendRectWidth || 350,
             legendLabel: _config.legendLabel,
+            unit: _config.unit || 'years',
         }
         this.data = _data;
         this.initVis();
@@ -206,13 +208,13 @@ class ChoroplethMap {
                         if (d.properties.value === null) {
                             value = 'No Data';
                         } else {
-                            value = `${d.properties.value.toFixed(2)} years`;
+                            value = `${d.properties.value.toFixed(2)} ${vis.config.unit}`;
                         }
 
                         return `
                             <div class="tooltip-title">${d.properties.name}</div>
                             <div class="tooltip-row">
-                                <span class="tooltip-label">${vis.config.legendLabel.slice(0, -8)}</span>
+                                <span class="tooltip-label">${vis.config.legendLabel.slice(0, -(vis.config.unit.length + 2))}</span>
                                 <span class="tooltip-value">${value}</span>
                             </div>
                         `;

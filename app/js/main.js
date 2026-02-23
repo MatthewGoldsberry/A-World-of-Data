@@ -6,15 +6,18 @@
 const labelMap = {
     'sanitation': {
         scatterTitle: 'Life Expectancy vs. Usage of at Least Basic Sanitation',
-        xAxisLabel: 'Population with Basic Sanitation (%)'
+        xAxisLabel: 'Population with Basic Sanitation (%)',
+        unit: '%',
     },
     'electricalAccess': {
         scatterTitle: 'Life Expectancy vs. Access to Electricity',
-        xAxisLabel: 'Population with Electricity Access (%)'
+        xAxisLabel: 'Population with Electricity Access (%)',
+        unit: '%',
     },
     'drinkingWater': {
         scatterTitle: 'Life Expectancy vs. Basic Drinking Water Access',
-        xAxisLabel: 'Population with Basic Drinking Water (%)'
+        xAxisLabel: 'Population with Basic Drinking Water (%)',
+        unit: '%',
     },
 }
 
@@ -61,9 +64,9 @@ Promise.all([
         // initialize visual elements
         initYearSlider();
         lifeExpectancyHistogram = updateHistogram(countryData, 'lifeExpectancy', currentYear, lifeExpectancyHistogram, '#life_expectancy_histogram', 'Life Expectancy (years)');
-        rightHistogram = updateHistogram(countryData, 'sanitation', currentYear, rightHistogram, '#right_histogram', labelMap['sanitation']['xAxisLabel']);
-        scatterplot = updateScatterplot(countryData, 'sanitation', 'lifeExpectancy', currentYear, scatterplot, '#scatterplot', labelMap['sanitation']['scatterTitle'], labelMap['sanitation']['xAxisLabel']);
+        rightHistogram = updateHistogram(countryData, currentDataset, currentYear, rightHistogram, '#right_histogram', labelMap[currentDataset]['xAxisLabel'], labelMap[currentDataset]['unit']);
+        scatterplot = updateScatterplot(countryData, currentDataset, 'lifeExpectancy', currentYear, scatterplot, '#scatterplot', labelMap[currentDataset]['scatterTitle'], labelMap[currentDataset]['xAxisLabel'], labelMap[currentDataset]['unit']);
         lifeExpectancyChoroplethMap = updateChoroplethMap(countryData, geoData, 'lifeExpectancy', currentYear, lifeExpectancyChoroplethMap, '#life_expectancy_choropleth', 'Life Expectancy (years)');
-        rightChoroplethMap = updateChoroplethMap(countryData, geoData, 'sanitation', currentYear, rightChoroplethMap, '#right_choropleth', labelMap['sanitation']['xAxisLabel']);
+        rightChoroplethMap = updateChoroplethMap(countryData, geoData, currentDataset, currentYear, rightChoroplethMap, '#right_choropleth', labelMap[currentDataset]['xAxisLabel'], labelMap[currentDataset]['unit']);
     })
     .catch(error => console.error(error));

@@ -12,6 +12,7 @@ class Histogram {
      *  - margin: definition of top, right, left and bottom margins
      *  - xAxisLabel: x-axis label
      *  - yAxisLabel: y-axis label
+     *  - unit: unit of x-axis 
      * @param {Array} _data
      */
     constructor(_config, _data) {
@@ -23,6 +24,7 @@ class Histogram {
             tooltipPadding: _config.tooltipPadding || 15,
             xAxisLabel: _config.xAxisLabel,
             yAxisLabel: _config.yAxisLabel,
+            unit: _config.unit || 'years',
         }
         this.data = _data;
         this.initVis();
@@ -150,7 +152,7 @@ class Histogram {
                         <div class="tooltip-title">Bin Details</div>
                         <div class="tooltip-row">
                             <span class="tooltip-label">Range</span>
-                            <span class="tooltip-value">${d.x0.toFixed(2)} - ${d.x1.toFixed(2)} %</span>
+                            <span class="tooltip-value">${d.x0.toFixed(2)} - ${d.x1.toFixed(2)} ${vis.config.unit}</span>
                         </div>
                         <div class="tooltip-row">
                             <span class="tooltip-label">Frequency</span>

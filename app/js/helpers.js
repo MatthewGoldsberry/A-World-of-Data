@@ -10,18 +10,20 @@
  * @param {Histogram} histogram - reference to histogram instance
  * @param {string} parentElement - css selector for target SVG element
  * @param {string} xAxisLabel - x-axis label
+ * @param {string} unit - unit of x-axis label
  * @returns {Histogram} - Histogram instance
  */
-function updateHistogram(data, valueKey, year, histogram, parentElement, xAxisLabel) {
+function updateHistogram(data, valueKey, year, histogram, parentElement, xAxisLabel, unit) {
     // filter data based on provided year and valueKey
     const filteredData = data.filter(d => d.year === year);
     filteredData.forEach(d => d.value = +d[valueKey])
 
     // create new instance if histogram is null, else update values in histogram and update vis
     if (!histogram) {
-        return new Histogram({ parentElement, xAxisLabel, yAxisLabel: 'Number of Countries' }, filteredData);
+        return new Histogram({ parentElement, xAxisLabel, yAxisLabel: 'Number of Countries', unit }, filteredData);
     } else {
         histogram.config.xAxisLabel = xAxisLabel;
+        histogram.config.unit = unit;
         histogram.data = filteredData;
         histogram.updateVis();
         return histogram;
@@ -39,9 +41,10 @@ function updateHistogram(data, valueKey, year, histogram, parentElement, xAxisLa
  * @param {string} parentElement - css selector for target SVG element
  * @param {string} chartTitle - title of chart
  * @param {string} xAxisLabel - label for x-axis
+ * @param {string} unit - unit of x-axis label
  * @returns {Scatterplot} - Scatterplot instance
  */
-function updateScatterplot(data, xValueKey, yValueKey, year, scatterplot, parentElement, chartTitle, xAxisLabel) {
+function updateScatterplot(data, xValueKey, yValueKey, year, scatterplot, parentElement, chartTitle, xAxisLabel, unit) {
     // filter data based on provided year and valueKeys
     const filteredData = data.filter(d => d.year === year);
     filteredData.forEach(d => {
@@ -51,10 +54,11 @@ function updateScatterplot(data, xValueKey, yValueKey, year, scatterplot, parent
 
     // create new instance if scatterplot is null, else update values in scatterplot and update vis
     if (!scatterplot) {
-        return new Scatterplot({ parentElement, chartTitle, xAxisLabel }, filteredData);
+        return new Scatterplot({ parentElement, chartTitle, xAxisLabel, unit }, filteredData);
     } else {
         scatterplot.config.chartTitle = chartTitle;
         scatterplot.config.xAxisLabel = xAxisLabel;
+        scatterplot.config.unit = unit;
         scatterplot.data = filteredData;
         scatterplot.updateVis();
         return scatterplot
@@ -97,9 +101,10 @@ function normalizeCountryName(name) {
  * @param {ChoroplethMap} choroplethMap - reference to ChoroplethMap instance
  * @param {string} parentElement - css selector for target SVG element
  * @param {string} legendLabel - name of legend
+ * @param {string} unit - unit of data
  * @returns {ChoroplethMap} - ChoroplethMap instance
  */
-function updateChoroplethMap(data, geoData, valueKey, year, choroplethMap, parentElement, legendLabel) {
+function updateChoroplethMap(data, geoData, valueKey, year, choroplethMap, parentElement, legendLabel, unit) {
     // filter data based on provided year and valueKey
     const filteredData = data.filter(d => d.year === year);
     filteredData.forEach(d => d.value = +d[valueKey]);
@@ -126,9 +131,10 @@ function updateChoroplethMap(data, geoData, valueKey, year, choroplethMap, paren
 
     // create new instance if choroplethMap is null, else update values in choroplethMap and update vis
     if (!choroplethMap) {
-        return new ChoroplethMap({ parentElement, legendLabel: legendLabel }, mapData);
+        return new ChoroplethMap({ parentElement, legendLabel: legendLabel, unit }, mapData);
     } else {
         choroplethMap.config.legendLabel = legendLabel;
+        choroplethMap.config.unit = unit;
         choroplethMap.data = mapData;
         choroplethMap.updateVis();
         return choroplethMap

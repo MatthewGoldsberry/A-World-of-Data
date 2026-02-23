@@ -12,6 +12,7 @@ class Scatterplot {
      *  - margin: definition of top, right, left and bottom margins
      *  - chartTitle: Title of chart
      *  - xAxisLabel: x-axis label
+     *  - unit: unit of x-axis
      * @param {Array} _data
      */
     constructor(_config, _data) {
@@ -23,6 +24,7 @@ class Scatterplot {
             tooltipPadding: _config.tooltipPadding || 15,
             chartTitle: _config.chartTitle,
             xAxisLabel: _config.xAxisLabel,
+            unit: _config.unit || 'years',
         }
         this.data = _data;
         this.initVis();
@@ -145,7 +147,7 @@ class Scatterplot {
                         <div class="tooltip-title">${d.entity}</div>
                         <div class="tooltip-row">
                             <span class="tooltip-label">${vis.config.xAxisLabel.slice(0, -4)}</span>
-                            <span class="tooltip-value">${d.xValue.toFixed(2)} %</span>
+                            <span class="tooltip-value">${d.xValue.toFixed(2)} ${vis.config.unit}</span>
                         </div>
                         <div class="tooltip-row">
                             <span class="tooltip-label">Life Expectancy</span>
