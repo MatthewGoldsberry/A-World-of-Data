@@ -299,5 +299,8 @@ class ChoroplethMap {
             "transform",
             `translate(${vis.config.margin.left}, ${vis.config.margin.top - 25})`
         );
+
+        // update legend title
+        vis.legendTitle.text(vis.config.legendLabel);
     }
 }

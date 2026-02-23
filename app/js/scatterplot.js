@@ -74,26 +74,25 @@ class Scatterplot {
             .attr('transform', `translate(0,${vis.height})`); // move to bottom of chart
 
         // chart title
-        vis.svg.append('text')
+        vis.chartTitle = vis.svg.append('text')
             .attr('class', 'chart-title')
             .attr('x', vis.config.containerWidth / 2)
             .attr('y', vis.config.margin.top / 2)
             .text(vis.config.chartTitle)
 
         // axis labels
-        vis.chart.append('text') // y-axis
+        vis.yAxisLabel = vis.chart.append('text') // y-axis
             .attr('class', 'axis-title')
             .attr('transform', 'rotate(-90)')
             .attr('y', 0 - vis.config.margin.left + 15)
             .attr('x', 0 - (vis.height / 2))
             .text("Life Expectancy (years)");
 
-        vis.chart.append('text') // x-axis
+        vis.xAxisLabel = vis.chart.append('text') // x-axis
             .attr('class', 'axis-title')
             .attr('x', vis.width / 2)
             .attr('y', vis.height + vis.config.margin.bottom - 5)
             .text(vis.config.xAxisLabel);
-
 
         // render initial visualization
         vis.updateVis();
@@ -172,5 +171,9 @@ class Scatterplot {
         vis.yAxisG.call(vis.yAxis);
         vis.yAxisG.selectAll('.tick text')
             .style('font-size', '0.85rem');
+
+        // update axis labels
+        vis.chartTitle.text(vis.config.chartTitle);
+        vis.xAxisLabel.text(vis.config.xAxisLabel);
     }
 }

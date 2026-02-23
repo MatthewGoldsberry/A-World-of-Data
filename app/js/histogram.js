@@ -74,14 +74,14 @@ class Histogram {
             .attr('transform', `translate(0,${vis.height})`); // move to bottom of chart
 
         // axis labels
-        vis.chart.append('text') // y-axis
+        vis.yAxisLabel = vis.chart.append('text') // y-axis
             .attr('class', 'axis-title')
             .attr('transform', 'rotate(-90)')
             .attr('y', 0 - vis.config.margin.left + 15)
             .attr('x', 0 - (vis.height / 2))
             .text(vis.config.yAxisLabel);
 
-        vis.chart.append('text') // x-axis
+        vis.xAxisLabel = vis.chart.append('text') // x-axis
             .attr('class', 'axis-title')
             .attr('x', vis.width / 2)
             .attr('y', vis.height + vis.config.margin.bottom - 5)
@@ -183,6 +183,9 @@ class Histogram {
         vis.xAxisG.call(vis.xAxis);
         vis.xAxisG.selectAll('.tick text')
             .style('font-size', '0.85rem');
+
+        // update axis labels
+        vis.xAxisLabel.text(vis.config.xAxisLabel);
 
         // update y-axis with horizontal gridlines
         vis.yAxisG
