@@ -20,6 +20,7 @@ class Histogram {
             containerWidth: _config.containerWidth || 500,
             containerHeight: _config.containerHeight || 300,
             margin: _config.margin || { top: 50, right: 20, bottom: 50, left: 50 },
+            tooltipPadding: _config.tooltipPadding || 15,
             xAxisLabel: _config.xAxisLabel,
             yAxisLabel: _config.yAxisLabel,
         }
@@ -129,6 +130,44 @@ class Histogram {
             .attr('fill', (d, i) => { return vis.colors[i] || vis.colors[vis.colors.length - 1]; })
             .attr('stroke', 'black')
             .attr('class', (d, i) => `bar bar-bin-${i}`);
+
+        // hover handler to highlight all instances of hovered bin in page
+        vis.chart.selectAll('.bar')
+            .on('mouseover', (event, d) => {
+                // tooltip creation
+
+                // set the tool tip position and automatically handle if it was going to be off page
+                const tooltip = d3.select('#tooltip');
+
+                // defined everything but left position 
+                tooltip
+                    .style('display', 'block')
+                    .style('top', (event.pageY + vis.config.tooltipPadding) + 'px') // can style top because y bounds will never go out of page view
+                    .html(`
+                        <div class="tooltip-title">Bin Details</div>
+                        <div class="tooltip-row">
+                            <span class="tooltip-label">Range</span>
+                            <span class="tooltip-value">${d.x0.toFixed(2)} - ${d.x1.toFixed(2)} %</span>
+                        </div>
+                        <div class="tooltip-row">
+                            <span class="tooltip-label">Frequency</span>
+                            <span class="tooltip-value">${d.length} Countries</span>
+                        </div>
+                    `);
+
+                // get the dimensions of the generated tooltip box
+                const tooltipWidth = tooltip.node().getBoundingClientRect().width;
+
+                // calculate horizontal position, updating if the box is going to be outside of page
+                let xPosition = event.pageX; // Note to self: have to store outside of conditional for position update to work 
+                if ((xPosition + tooltipWidth + vis.config.tooltipPadding) > window.innerWidth) {
+                    xPosition = event.pageX - tooltipWidth;
+                }
+
+                // set the x position of the tooltip
+                tooltip.style('left', xPosition + 'px')
+            })
+            .on('mouseout', () => { d3.select('#tooltip').style('display', 'none'); }); // remove tooltip
 
         // update axis
         vis.xAxisG.call(vis.xAxis);

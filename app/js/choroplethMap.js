@@ -23,6 +23,7 @@ class ChoroplethMap {
             containerWidth: _config.containerWidth || 500,
             containerHeight: _config.containerHeight || 300,
             margin: _config.margin || { top: 0, right: 0, bottom: 0, left: 0 },
+            tooltipPadding: _config.tooltipPadding || 15,
             legendBottom: _config.legendBottom || 25,
             legendLeft: _config.legendLeft || 0,
             legendHeight: _config.legendHeight || 35,
@@ -172,8 +173,51 @@ class ChoroplethMap {
                 if (d.properties.value !== null) {
                     highlightCountry(d.properties.name);
                 }
+
+                // tooltip creation
+
+                // set the tool tip position and automatically handle if it was going to be off page
+                const tooltip = d3.select('#tooltip');
+
+                // defined everything but left position 
+                tooltip
+                    .style('display', 'block')
+                    .style('top', (event.pageY + vis.config.tooltipPadding) + 'px')
+                    .html(() => {
+                        let value;
+                        if (d.properties.value === null) {
+                            value = 'No Data';
+                        } else {
+                            value = `${d.properties.value.toFixed(2)} %`;
+                        }
+
+                        return `
+                            <div class="tooltip-title">${d.properties.name}</div>
+                            <div class="tooltip-row">
+                                <span class="tooltip-label">${vis.config.legendLabel.slice(0, -4)}</span>
+                                <span class="tooltip-value">${value}</span>
+                            </div>
+                        `;
+                    });
+
+                // get the dimensions of the generated tooltip box
+                const tooltipWidth = tooltip.node().getBoundingClientRect().width;
+
+                // calculate horizontal position, updating if the box is going to be outside of page
+                let xPosition = event.pageX; // Note to self: have to store outside of conditional for position update to work 
+                if ((xPosition + tooltipWidth + vis.config.tooltipPadding) > window.innerWidth) {
+                    xPosition = event.pageX - tooltipWidth;
+                }
+
+                // set the x position of the tooltip
+                tooltip.style('left', xPosition + 'px')
             })
-            .on('mouseout', unhighlightCountry);
+            .on('mouseout', () => {
+                unhighlightCountry();
+
+                // remove tooltip 
+                d3.select('#tooltip').style('display', 'none');
+            });
 
         // calculate tick values
         const domain = vis.colorScale.domain();

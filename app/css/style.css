@@ -257,6 +257,45 @@ body {
     margin-bottom: 0;
 }
 
+/* Tooltip Configurations */
+
+#tooltip {
+    position: absolute;
+    display: none;
+    background: white;
+    box-shadow: 3px 3px 3px 0px #5c5c5c80;
+    border: 1px solid #ddd;
+    padding: 8px;
+    color: #333;
+    z-index: 5;
+}
+
+.tooltip-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 4px;
+    font-size: 1rem;
+}
+
+.tooltip-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 4px;
+}
+
+.tooltip-label {
+    color: darkslategrey;
+    font-size: 0.8rem;
+}
+
+.tooltip-value {
+    font-weight: bold;
+    text-align: right;
+    font-size: 0.8rem;
+}
+
 /* --- Focussing Configurations -- */
 
 .bar,

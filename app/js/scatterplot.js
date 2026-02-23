@@ -20,6 +20,7 @@ class Scatterplot {
             containerWidth: _config.containerWidth || 500,
             containerHeight: _config.containerHeight || 300,
             margin: _config.margin || { top: 40, right: 30, bottom: 50, left: 50 },
+            tooltipPadding: _config.tooltipPadding || 15,
             chartTitle: _config.chartTitle,
             xAxisLabel: _config.xAxisLabel,
         }
@@ -133,8 +134,32 @@ class Scatterplot {
 
         // hover handler to highlight all instances of hovered country in page
         vis.chart.selectAll('.symbol')
-            .on('mouseover', (event, d) => highlightCountry(d.entity))
-            .on('mouseout', unhighlightCountry);
+            .on('mouseover', (event, d) => {
+                highlightCountry(d.entity)
+
+                // tooltip creation
+                d3.select('#tooltip')
+                    .style('display', 'block')
+                    .style('left', (event.pageX + vis.config.tooltipPadding) + 'px')
+                    .style('top', (event.pageY + vis.config.tooltipPadding) + 'px')
+                    .html(`
+                        <div class="tooltip-title">${d.entity}</div>
+                        <div class="tooltip-row">
+                            <span class="tooltip-label">${vis.config.xAxisLabel.slice(0, -4)}</span>
+                            <span class="tooltip-value">${d.xValue.toFixed(2)} %</span>
+                        </div>
+                        <div class="tooltip-row">
+                            <span class="tooltip-label">Child Mortality</span>
+                            <span class="tooltip-value">${d.yValue.toFixed(2)} %</span>
+                        </div>
+                    `);
+            })
+            .on('mouseout', () => {
+                unhighlightCountry();
+
+                // remove tooltip 
+                d3.select('#tooltip').style('display', 'none');
+            });
 
         // update the axes and gridlines
         vis.xAxisG.call(vis.xAxis);
