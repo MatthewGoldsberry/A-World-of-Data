@@ -146,7 +146,7 @@ class Scatterplot {
                     .html(`
                         <div class="tooltip-title">${d.entity}</div>
                         <div class="tooltip-row">
-                            <span class="tooltip-label">${vis.config.xAxisLabel.slice(0, -4)}</span>
+                            <span class="tooltip-label">${vis.config.xAxisLabel.slice(0, -(vis.config.unit.length + 2))}</span>
                             <span class="tooltip-value">${d.xValue.toFixed(2)} ${vis.config.unit}</span>
                         </div>
                         <div class="tooltip-row">
