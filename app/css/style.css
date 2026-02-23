@@ -186,7 +186,7 @@ body {
 /* --- Chart Expansion in Side Columns --- */
 
 #right_choropleth,
-#child_mortality_choropleth {
+#life_expectancy_choropleth {
     width: 120%;
     position: relative;
     z-index: 1;
@@ -197,13 +197,13 @@ body {
     margin-left: -10%;
 }
 
-#child_mortality_choropleth {
+#life_expectancy_choropleth {
     /* shift to make the expansion stay in-screen */
     margin-left: -5%;
 }
 
 #right_histogram,
-#child_mortality_histogram {
+#life_expectancy_histogram {
     transform: scale(1.20);
     transform-origin: center center;
     position: relative;

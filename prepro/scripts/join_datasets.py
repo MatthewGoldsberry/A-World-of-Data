@@ -7,7 +7,7 @@ import pandas as pd
 from pycountry import countries
 
 UNPROCESSED_DIR = Path("prepro/unprocessed_csvs")
-PROCESSED_DATA_PATH = Path("app/data/child_mortality_trends.csv")
+PROCESSED_DATA_PATH = Path("app/data/life_expectancy_trends.csv")
 LOG_PATH = Path("app/data/removed_rows_log.md")
 
 COUNTRY_CODES = {c.alpha_3 for c in countries}

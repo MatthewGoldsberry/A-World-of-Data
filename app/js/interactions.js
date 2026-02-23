@@ -8,10 +8,11 @@
 d3.select('#data-selector').on('change', function () {
     // get the selected value from user
     currentDataset = d3.select(this).property('value');
+    console.log(currentDataset);
 
     // add the new svgs with the selected dataset
     rightHistogram = updateHistogram(countryData, currentDataset, currentYear, rightHistogram, '#right_histogram', labelMap[currentDataset]['xAxisLabel'])
-    scatterplot = updateScatterplot(countryData, currentDataset, 'child_mortality_rate', currentYear, scatterplot, '#scatterplot', labelMap[currentDataset]['scatterTitle'], labelMap[currentDataset]['xAxisLabel'])
+    scatterplot = updateScatterplot(countryData, currentDataset, 'lifeExpectancy', currentYear, scatterplot, '#scatterplot', labelMap[currentDataset]['scatterTitle'], labelMap[currentDataset]['xAxisLabel'])
     rightChoroplethMap = updateChoroplethMap(countryData, geoData, currentDataset, currentYear, rightChoroplethMap, '#right_choropleth', labelMap[currentDataset]['xAxisLabel'])
 });
 
@@ -24,10 +25,10 @@ d3.select('#yearSlider').on('input', function () {
     d3.select('#active-year').text(currentYear);
 
     // re-render everything with the new currentYear and currentDataset
-    childMortalityHistogram = updateHistogram(countryData, 'child_mortality_rate', currentYear, childMortalityHistogram, '#child_mortality_histogram', 'Child Mortality Rate (%)');
+    lifeExpectancyHistogram = updateHistogram(countryData, 'lifeExpectancy', currentYear, lifeExpectancyHistogram, '#life_expectancy_histogram', 'Life Expectancy (years)');
     rightHistogram = updateHistogram(countryData, currentDataset, currentYear, rightHistogram, '#right_histogram', labelMap[currentDataset]['xAxisLabel']);
-    scatterplot = updateScatterplot(countryData, currentDataset, 'child_mortality_rate', currentYear, scatterplot, '#scatterplot', labelMap[currentDataset]['scatterTitle'], labelMap[currentDataset]['xAxisLabel']);
-    childMortalityChoroplethMap = updateChoroplethMap(countryData, geoData, 'child_mortality_rate', currentYear, childMortalityChoroplethMap, '#child_mortality_choropleth', 'Child Mortality Rate (%)');
+    scatterplot = updateScatterplot(countryData, currentDataset, 'lifeExpectancy', currentYear, scatterplot, '#scatterplot', labelMap[currentDataset]['scatterTitle'], labelMap[currentDataset]['xAxisLabel']);
+    lifeExpectancyChoroplethMap = updateChoroplethMap(countryData, geoData, 'lifeExpectancy', currentYear, lifeExpectancyChoroplethMap, '#life_expectancy_choropleth', 'Life Expectancy (years)');
     rightChoroplethMap = updateChoroplethMap(countryData, geoData, currentDataset, currentYear, rightChoroplethMap, '#right_choropleth', labelMap[currentDataset]['xAxisLabel']);
 });
 
@@ -76,7 +77,7 @@ function highlightCountries(hoveredNames = []) {
     d3.selectAll(selectors).classed('unfocused', false).classed('focused', true);
 
     // go into each histogram and figure out which bin the country is in, then focus that bin
-    [childMortalityHistogram, rightHistogram].forEach(vis => {
+    [lifeExpectancyHistogram, rightHistogram].forEach(vis => {
         vis.bins.forEach((bin, i) => {
             // look if the bin has any of the countries in namesToFocus in it
             const hasCountry = bin.some(d => {

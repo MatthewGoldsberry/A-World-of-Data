@@ -206,13 +206,13 @@ class ChoroplethMap {
                         if (d.properties.value === null) {
                             value = 'No Data';
                         } else {
-                            value = `${d.properties.value.toFixed(2)} %`;
+                            value = `${d.properties.value.toFixed(2)} years`;
                         }
 
                         return `
                             <div class="tooltip-title">${d.properties.name}</div>
                             <div class="tooltip-row">
-                                <span class="tooltip-label">${vis.config.legendLabel.slice(0, -4)}</span>
+                                <span class="tooltip-label">${vis.config.legendLabel.slice(0, -8)}</span>
                                 <span class="tooltip-value">${value}</span>
                             </div>
                         `;

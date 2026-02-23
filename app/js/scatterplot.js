@@ -86,7 +86,7 @@ class Scatterplot {
             .attr('transform', 'rotate(-90)')
             .attr('y', 0 - vis.config.margin.left + 15)
             .attr('x', 0 - (vis.height / 2))
-            .text("Child Mortality Rate (%)");
+            .text("Life Expectancy (years)");
 
         vis.chart.append('text') // x-axis
             .attr('class', 'axis-title')
@@ -149,8 +149,8 @@ class Scatterplot {
                             <span class="tooltip-value">${d.xValue.toFixed(2)} %</span>
                         </div>
                         <div class="tooltip-row">
-                            <span class="tooltip-label">Child Mortality</span>
-                            <span class="tooltip-value">${d.yValue.toFixed(2)} %</span>
+                            <span class="tooltip-label">Life Expectancy</span>
+                            <span class="tooltip-value">${d.yValue.toFixed(2)} years</span>
                         </div>
                     `);
             })
