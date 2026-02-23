@@ -107,6 +107,7 @@ function updateChoroplethMap(data, geoData, valueKey, year, choroplethMap, paren
 
     // either grab that data already in choroplethMap if it exists, or clone geoData
     // - this prevents the properties.value becoming the same for both maps in the page
+    let mapData;
     if (choroplethMap) {
         mapData = choroplethMap.data;
     } else {
