@@ -272,6 +272,8 @@ body {
     border-radius: 20px;
     align-self: center;
     margin-bottom: 0;
+    cursor: default;
+    user-select: none;
 }
 
 /* Tooltip Configurations */
