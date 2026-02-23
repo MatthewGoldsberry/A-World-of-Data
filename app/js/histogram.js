@@ -201,5 +201,8 @@ class Histogram {
             .attr('stroke', 'darkgrey');
         vis.yAxisG.selectAll('.tick text')
             .style('font-size', '0.85rem');
+
+        // makes selection persist even when data values are changed
+        highlightCountry();
     }
 }

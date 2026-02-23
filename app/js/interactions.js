@@ -58,7 +58,7 @@ function normalizeClassName(name) {
 function highlightCountries(hoveredNames = []) {
     // combine hovered with selectedCountries to ensure everything that needs to get highlighted gets handled below
     // the set allows for an easy method to clean out any duplicate values
-    const namesToFocus = [...new Set([...hoveredNames, ...selectedCountries])];
+    const namesToFocus = [...new Set([...hoveredNames, ...selectedCountries])].filter(name => name && typeof name === 'string');
 
     // early exit if there are no hovered elements or selected countries
     if (namesToFocus.length === 0) {

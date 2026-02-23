@@ -136,7 +136,7 @@ class Scatterplot {
         // hover handler to highlight all instances of hovered country in page
         vis.chart.selectAll('.symbol')
             .on('mouseover', (event, d) => {
-                highlightCountry(d.entity)
+                highlightCountry(d.entity);
 
                 // tooltip creation
                 d3.select('#tooltip')
@@ -177,5 +177,8 @@ class Scatterplot {
         // update axis labels
         vis.chartTitle.text(vis.config.chartTitle);
         vis.xAxisLabel.text(vis.config.xAxisLabel);
+
+        // makes selection persist even when data values are changed
+        highlightCountry();
     }
 }

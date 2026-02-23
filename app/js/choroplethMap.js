@@ -304,5 +304,8 @@ class ChoroplethMap {
 
         // update legend title
         vis.legendTitle.text(vis.config.legendLabel);
+
+        // makes selection persist even when data values are changed
+        highlightCountry();
     }
 }
