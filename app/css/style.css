@@ -330,6 +330,17 @@ body {
     stroke-width: 1px;
 }
 
+.symbol.focused {
+    r: 6;
+    fill: darkorange;
+    opacity: 90%;
+}
+
+.symbol.unfocused {
+    r: 4;
+    fill: steelblue;
+}
+
 /* --- D3 Chart Configurations --- */
 
 /* General Chart CSS */
