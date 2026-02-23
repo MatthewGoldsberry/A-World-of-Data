@@ -48,7 +48,7 @@ d3.select('#yearSlider').on('input', function () {
  */
 function normalizeClassName(name) {
     if (!name) return 'unknown';
-    return name.replace(/\s+/g, '-').replace(/[.,]/g, '');
+    return name.replace(/[\s']/g, '-').replace(/[.,]/g, '');
 }
 
 /**
