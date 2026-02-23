@@ -105,11 +105,16 @@ function updateChoroplethMap(data, geoData, valueKey, year, choroplethMap, paren
     const filteredData = data.filter(d => d.year === year);
     filteredData.forEach(d => d.value = +d[valueKey]);
 
-    // removed Antarctica (will never contain info and its removal allows for zoomed in views of other countries)
-    geoData.features = geoData.features.filter(d => d.properties.name !== 'Antarctica')
+    // either grab that data already in choroplethMap if it exists, or clone geoData
+    // - this prevents the properties.value becoming the same for both maps in the page
+    if (choroplethMap) {
+        mapData = choroplethMap.data;
+    } else {
+        mapData = structuredClone(geoData);
+    }
 
     // combine both datasets by adding the value to file
-    geoData.features.forEach(d => {
+    mapData.features.forEach(d => {
         const matchingCountry = filteredData.find(country => normalizeCountryName(country.entity) === d.properties.name);
 
         if (matchingCountry) {
@@ -121,10 +126,10 @@ function updateChoroplethMap(data, geoData, valueKey, year, choroplethMap, paren
 
     // create new instance if choroplethMap is null, else update values in choroplethMap and update vis
     if (!choroplethMap) {
-        return new ChoroplethMap({ parentElement, legendLabel: legendLabel }, geoData);
+        return new ChoroplethMap({ parentElement, legendLabel: legendLabel }, mapData);
     } else {
         choroplethMap.config.legendLabel = legendLabel;
-        choroplethMap.data = geoData;
+        choroplethMap.data = mapData;
         choroplethMap.updateVis();
         return choroplethMap
     }

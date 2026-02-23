@@ -47,6 +47,9 @@ Promise.all([
             d.electricity = +d['eg_elc_accs_zs'];
         });
 
+        // removed Antarctica (will never contain info and its removal allows for zoomed in views of other countries)
+        geoData.features = geoData.features.filter(d => d.properties.name !== 'Antarctica')
+
         // initialize visual elements
         initYearSlider();
         childMortalityHistogram = updateHistogram(countryData, 'child_mortality_rate', currentYear, childMortalityHistogram, '#child_mortality_histogram', 'Child Mortality Rate (%)');
