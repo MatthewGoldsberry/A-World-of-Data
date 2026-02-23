@@ -6,15 +6,15 @@
 const labelMap = {
     'sanitation': {
         scatterTitle: 'Life Expectancy vs. Usage of at Least Basic Sanitation',
-        xAxisLabel: 'Percent of Population Using at Least Basic Sanitation (%)'
+        xAxisLabel: 'Population with Basic Sanitation (%)'
     },
     'electricalAccess': {
         scatterTitle: 'Life Expectancy vs. Access to Electricity',
-        xAxisLabel: 'Percent of Population With Access to Electricity (%)'
+        xAxisLabel: 'Population with Electricity Access (%)'
     },
     'drinkingWater': {
-        scatterTitle: 'Life Expectancy vs. Access to Electricity',
-        xAxisLabel: 'Percent of Population Using at Least Basic Drinking Water Source (%)'
+        scatterTitle: 'Life Expectancy vs. Basic Drinking Water Access',
+        xAxisLabel: 'Population with Basic Drinking Water (%)'
     },
 }
 
