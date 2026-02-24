@@ -50,12 +50,12 @@ class Scatterplot {
         // initialize axes
         vis.xAxis = d3.axisBottom(vis.xScale)
             .ticks(6)
-            .tickSize(-vis.height - 10)
+            .tickSize(-vis.height)
             .tickPadding(10);
 
         vis.yAxis = d3.axisLeft(vis.yScale)
             .ticks(6)
-            .tickSize(-vis.width - 10)
+            .tickSize(-vis.width)
             .tickPadding(10);
 
         // define size of SVG drawing area based on the specified SVG window 
@@ -110,9 +110,16 @@ class Scatterplot {
         vis.xValue = d => d.xValue;
         vis.yValue = d => d.yValue;
 
+        // create extent that represents the y-axis and calculate the tick values for it
+        const yExtent = [Math.min(40, (d3.min(vis.data, vis.yValue))), 90];
+        const binInfo = calcBinInfo(yExtent, 5);
+
         // set the scale input domains
-        vis.xScale.domain([d3.min(vis.data, vis.xValue), d3.max(vis.data, vis.xValue)]);
-        vis.yScale.domain([d3.min(vis.data, vis.yValue), d3.max(vis.data, vis.yValue)]);
+        vis.xScale.domain([0, 100]);
+        vis.yScale.domain(binInfo.niceDomain);
+
+        // set a list of y tick values
+        vis.yTickValues = [binInfo.niceDomain[0], ...binInfo.exactThreshold, binInfo.niceDomain[1]];
 
         // render scatterplot
         vis.renderVis();
@@ -128,7 +135,6 @@ class Scatterplot {
         vis.chart.selectAll('.symbol')
             .data(vis.data)
             .join('circle')
-            .attr('class', 'symbol')
             .attr('transform', d => `translate(${vis.xScale(vis.xValue(d))}, ${vis.yScale(vis.yValue(d))})`)
             .attr('class', d => `symbol country-${normalizeClassName(d.entity)}`); // Add unique ID class;
 
@@ -165,6 +171,9 @@ class Scatterplot {
                 handleSelection(d.entity);
             });
 
+        // update ticks
+        vis.yAxis.tickValues(vis.yTickValues);
+
         // update the axes and gridlines
         vis.xAxisG.call(vis.xAxis);
         vis.xAxisG.selectAll('.tick text')
@@ -177,6 +186,10 @@ class Scatterplot {
         // update axis labels
         vis.chartTitle.text(vis.config.chartTitle);
         vis.xAxisLabel.text(vis.config.xAxisLabel);
+
+        // force the scatterplot outline on top of grid lines
+        vis.xAxisG.select('.domain').raise();
+        vis.yAxisG.select('.domain').raise();
 
         // makes selection persist even when data values are changed
         highlightCountry();
