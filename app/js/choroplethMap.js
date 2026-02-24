@@ -152,11 +152,11 @@ class ChoroplethMap {
 
         // calculate the threshold based on the extent of the values
         const extent = d3.extent(vis.data.features, d => d.properties.value);
-        const bin_info = calcBinInfo(extent);
+        vis.bin_info = calcBinInfo(extent);
 
         // update color scale based on data
         vis.colorScale = d3.scaleThreshold()
-            .domain(bin_info.exactThreshold)
+            .domain(vis.bin_info.exactThreshold)
             .range(vis.colors);
 
         // render histogram
@@ -247,7 +247,7 @@ class ChoroplethMap {
 
         // calculate tick values
         const thresholds = vis.colorScale.domain();
-        const tickVals = [vis.niceDomain[0], ...thresholds, vis.niceDomain[1]];
+        const tickVals = [vis.bin_info.niceDomain[0], ...thresholds, vis.bin_info.niceDomain[1]];
 
         // calculate width of each block in legend bar
         const blockWidth = vis.config.legendRectWidth / vis.colors.length;
