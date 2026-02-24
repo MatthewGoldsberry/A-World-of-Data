@@ -56,8 +56,6 @@ Promise.all([
             d.drinkingWater = +d.basic_drinking_water_usage;
         });
 
-        console.log(countryData.electricalAccess)
-
         // removed Antarctica (will never contain info and its removal allows for zoomed in views of other countries)
         geoData.features = geoData.features.filter(d => d.properties.name !== 'Antarctica')
 
