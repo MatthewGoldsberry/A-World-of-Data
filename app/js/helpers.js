@@ -172,10 +172,11 @@ function initYearSlider() {
  * Calculate explicit thresholds and domains based on the extent of the data (generated via d3.extent())
  * 
  * This is required to ensure that the bins of the choropleth match the bins of the histograms
- * @param {any} extent 
+ * @param {any} extent - extent to bin
+ * @param {number} numberOfBins - number of bins to generate
  * @returns dict containing 'niceDomain' and 'exactThreshold' values
  */
-function calcBinInfo(extent) {
+function calcBinInfo(extent, numberOfBins = 10) {
     // generate a 'nice' linear scale of the extent
     const niceDomain = d3.scaleLinear()
         .domain(extent)
@@ -187,7 +188,6 @@ function calcBinInfo(extent) {
     const max = niceDomain[1];
 
     // calculate the step size of the bins
-    const numberOfBins = 10;
     const stepSize = (max - min) / numberOfBins;
 
     // Creates explicit list representing the threshold
