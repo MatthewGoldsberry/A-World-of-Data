@@ -101,13 +101,13 @@ class Histogram {
 
         // calculate the threshold and domain based on the extent of the values
         const extent = d3.extent(vis.data, d => d.value);
-        const bin_info = calcBinInfo(extent);
+        const binInfo = calcBinInfo(extent);
 
         // create bins for histogram
         const binGenerator = d3.bin()
             .value(d => d.value)
-            .domain(bin_info.niceDomain)
-            .thresholds(bin_info.exactThreshold);
+            .domain(binInfo.niceDomain)
+            .thresholds(binInfo.exactThreshold);
 
         vis.bins = binGenerator(vis.data);
 
