@@ -194,9 +194,7 @@ class Scatterplot {
         // makes selection persist even when data values are changed
         highlightCountry();
 
-        if (scatterplot) {
-            scatterplot.refreshStacking();
-        }
+        vis.refreshStacking();
     }
 
     refreshStacking() {
