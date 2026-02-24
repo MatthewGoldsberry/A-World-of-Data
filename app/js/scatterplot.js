@@ -96,6 +96,34 @@ class Scatterplot {
             .attr('y', vis.height + vis.config.margin.bottom - 5)
             .text(vis.config.xAxisLabel);
 
+        // brush component setup
+        vis.brushG = vis.chart.append('g')
+            .attr('class', 'brush');
+        vis.isBrushing = false;
+        vis.brush = d3.brush()
+            .extent([[0, 0], [vis.width, vis.height]])
+            .on('start', function () {
+                // track when the user is brushing to prevent hovering from calling highlightCountry and potentially unhighlighting countries in brush window
+                vis.isBrushing = true;
+            })
+            .on('brush', function ({ selection }) {
+                // while brushing, updated highlighted countries 
+                // does not save to stored selected countries until the user finalizes there selection via release of brush
+                if (selection) vis.brushed(selection);
+                vis.refreshStacking();
+            })
+            .on('end', function ({ selection }) {
+                if (!selection) {
+                    vis.brushed(null);
+                } else {
+                    // once the mouse is released, finalize the selection and make the brush component disappear
+                    vis.brushedEnd(selection);
+                    d3.select(this).call(vis.brush.move, null); // note to self: this has to be this to work, cannot be vis
+                }
+                vis.isBrushing = false;
+                vis.refreshStacking();
+            });
+
         // render initial visualization
         vis.updateVis();
     }
@@ -142,6 +170,7 @@ class Scatterplot {
         // hover handler to highlight all instances of hovered country in page
         vis.chart.selectAll('.symbol')
             .on('mouseover', (event, d) => {
+                if (vis.isBrushing) return; // prevent highlight/unhighlight behavior while brushing
                 highlightCountry(d.entity);
 
                 // tooltip creation
@@ -162,12 +191,13 @@ class Scatterplot {
                     `);
             })
             .on('mouseout', () => {
+                if (vis.isBrushing) return; // prevent highlight/unhighlight behavior while brushing
+                // remove tool tip and unhighlight
                 unhighlightCountry();
-
-                // remove tooltip 
                 d3.select('#tooltip').style('display', 'none');
             })
-            .on('click', (event, d) => { // selections
+            .on('click', (event, d) => {
+                // selections
                 handleSelection(d.entity);
             });
 
@@ -191,17 +221,71 @@ class Scatterplot {
         vis.xAxisG.select('.domain').raise();
         vis.yAxisG.select('.domain').raise();
 
+        // update the brush
+        vis.brushG.call(vis.brush);
+
         // makes selection persist even when data values are changed
         highlightCountry();
 
         vis.refreshStacking();
     }
 
+    /**
+     * Raises selected symbols in the stack to make them appear above the other, non-selected, symbols
+     */
     refreshStacking() {
         let vis = this;
         const focused = vis.chart.selectAll('.symbol.focused');
         if (!focused.empty()) {
             focused.raise();
         }
+    }
+
+    /**
+     * While the user is brushing highlight the countries selected within the brush
+     * 
+     * This is pair with an end event handler to prevent updating the selectedCountries with every frame
+     * the user is brushing
+     * @param {any} selection 
+     */
+    brushed(selection) {
+        let vis = this;
+
+        // unpack 2d array 
+        const [[x0, y0], [x1, y1]] = selection;
+
+        // filter the data to find countries inside the coordinates
+        const brushedData = vis.data.filter(d => {
+            return vis.xScale(vis.xValue(d)) >= x0 && vis.xScale(vis.xValue(d)) <= x1 && vis.yScale(vis.yValue(d)) >= y0 && vis.yScale(vis.yValue(d)) <= y1;
+        });
+
+        // highlight countries, no persisting selection is made until brushedEnd event
+        highlightCountries(brushedData.map(d => d.entity));
+
+        // bring highlighted dots to the front
+        vis.refreshStacking();
+
+    }
+
+    /**
+     * Once the user has finished the brushing action, add highlighted selection of countries to persisting selection
+     * @param {any} selection 
+     */
+    brushedEnd(selection) {
+        let vis = this;
+
+        // unpack 2d array 
+        const [[x0, y0], [x1, y1]] = selection;
+
+        // filter the data to find countries inside the coordinates
+        const brushedData = vis.data.filter(d => {
+            return vis.xScale(vis.xValue(d)) >= x0 && vis.xScale(vis.xValue(d)) <= x1 && vis.yScale(vis.yValue(d)) >= y0 && vis.yScale(vis.yValue(d)) <= y1;
+        });
+
+        // persist selection made via the brush in selectedCountries list
+        handleSelections(brushedData.map(d => d.entity));
+
+        // bring highlighted dots to the front
+        vis.refreshStacking();
     }
 }
