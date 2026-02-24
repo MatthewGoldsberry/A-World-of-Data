@@ -335,7 +335,7 @@ body {
 .symbol.focused {
     r: 6;
     fill: darkorange;
-    opacity: 0.90;
+    opacity: 0.75;
 }
 
 .symbol.unfocused {
