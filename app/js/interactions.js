@@ -75,9 +75,6 @@ function highlightCountries(hoveredNames = []) {
     // highlight the specific country in all visualizations
     d3.selectAll(selectors).classed('unfocused', false).classed('focused', true);
 
-    // raise symbols to make sure they do not get hidden by overlaying symbols
-    d3.selectAll('.symbol.focused').raise();
-
     // go into each histogram and figure out which bin the country is in, then focus that bin
     [lifeExpectancyHistogram, rightHistogram].forEach(vis => {
         vis.bins.forEach((bin, i) => {
