@@ -166,3 +166,35 @@ function initYearSlider() {
     d3.select('#maxYearLabel').text(maxYear);
     d3.select('#active-year').text(currentYear);
 }
+
+
+/**
+ * Calculate explicit thresholds and domains based on the extent of the data (generated via d3.extent())
+ * 
+ * This is required to ensure that the bins of the choropleth match the bins of the histograms
+ * @param {any} extent 
+ * @returns dict containing 'niceDomain' and 'exactThreshold' values
+ */
+function calcBinInfo(extent) {
+    // generate a 'nice' linear scale of the extent
+    const niceDomain = d3.scaleLinear()
+        .domain(extent)
+        .nice()
+        .domain();
+
+    // extract the min and max of the data from the data
+    const min = niceDomain[0];
+    const max = niceDomain[1];
+
+    // calculate the step size of the bins
+    const numberOfBins = 10;
+    const stepSize = (max - min) / numberOfBins;
+
+    // Creates explicit list representing the threshold
+    // [min + step, min + 2*step, ..., min + 9*step]
+    const exactThresholds = d3.range(1, numberOfBins).map(i => min + i * stepSize);
+    return {
+        'niceDomain': niceDomain,
+        'exactThreshold': exactThresholds,
+    }
+}
