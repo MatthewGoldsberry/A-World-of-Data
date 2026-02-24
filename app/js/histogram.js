@@ -143,6 +143,7 @@ class Histogram {
             .on('mouseover', (event, d) => {
                 // highlight countries in bin
                 highlightCountries(d.map(c => c.entity));
+                scatterplot.refreshStacking();
 
                 // tooltip creation
 
@@ -184,6 +185,7 @@ class Histogram {
             })
             .on('click', (event, d) => { // selections
                 handleSelections(d.map(c => c.entity));
+                scatterplot.refreshStacking();
             });
 
         // update axis

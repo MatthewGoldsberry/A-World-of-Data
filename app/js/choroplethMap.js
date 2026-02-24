@@ -196,6 +196,7 @@ class ChoroplethMap {
                 if (d.properties.value !== null) {
                     highlightCountry(countryNameReverseMapping[d.properties.name] || d.properties.name);
                 }
+                scatterplot.refreshStacking();
 
                 // tooltip creation
 
@@ -243,6 +244,7 @@ class ChoroplethMap {
             })
             .on('click', (event, d) => { // selections
                 handleSelection(countryNameReverseMapping[d.properties.name] || d.properties.name);
+                scatterplot.refreshStacking();
             });
 
         // calculate tick values

@@ -335,14 +335,14 @@ body {
 .symbol.focused {
     r: 6;
     fill: darkorange;
-    opacity: 0.75;
+    opacity: 0.9;
 }
 
 .symbol.unfocused {
     r: 4;
     fill: steelblue;
     stroke: none;
-    opacity: 0.25;
+    opacity: 0.15;
 }
 
 /* --- D3 Chart Configurations --- */

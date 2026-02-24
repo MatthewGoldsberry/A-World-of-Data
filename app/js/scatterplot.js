@@ -193,5 +193,17 @@ class Scatterplot {
 
         // makes selection persist even when data values are changed
         highlightCountry();
+
+        if (scatterplot) {
+            scatterplot.refreshStacking();
+        }
+    }
+
+    refreshStacking() {
+        let vis = this;
+        const focused = vis.chart.selectAll('.symbol.focused');
+        if (!focused.empty()) {
+            focused.raise();
+        }
     }
 }
