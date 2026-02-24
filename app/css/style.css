@@ -319,8 +319,9 @@ body {
 
 .bar,
 .symbol,
-.country-path {
+.country {
     transition: opacity 0.2s ease;
+    cursor: pointer;
 }
 
 .unfocused {
