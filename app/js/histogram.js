@@ -49,7 +49,6 @@ class Histogram {
 
         // initialize axes
         vis.xAxis = d3.axisBottom(vis.xScale)
-            .ticks(10)
             .tickSizeOuter(0);
 
         vis.yAxis = d3.axisLeft(vis.yScale)
@@ -111,8 +110,12 @@ class Histogram {
 
         vis.bins = binGenerator(vis.data);
 
+        // store the bin boundaries for tick marking 
+        vis.binBoundaries = vis.bins.map(d => d.x0);
+        vis.binBoundaries.push(vis.bins[vis.bins.length - 1].x1);
+
         // update scale domains
-        vis.xScale.domain([vis.bins[0].x0, vis.bins[vis.bins.length - 1].x1]);
+        vis.xScale.domain([vis.binBoundaries[0], vis.binBoundaries[vis.binBoundaries.length - 1]]);
         vis.yScale.domain([0, d3.max(vis.bins, d => d.length)]);
 
         // render histogram
@@ -188,13 +191,16 @@ class Histogram {
                 scatterplot.refreshStacking();
             });
 
+        // update axis labels and ticks
+        vis.xAxisLabel.text(vis.config.xAxisLabel);
+        vis.xAxis = d3.axisBottom(vis.xScale)
+            .tickValues(vis.binBoundaries)
+            .tickFormat(d3.format(".0f")); // choropleth legend rounds to nearest one automatically, so that will also be done here for parity
+
         // update axis
         vis.xAxisG.call(vis.xAxis);
         vis.xAxisG.selectAll('.tick text')
             .style('font-size', '0.85rem');
-
-        // update axis labels
-        vis.xAxisLabel.text(vis.config.xAxisLabel);
 
         // update y-axis with horizontal gridlines
         vis.yAxisG
