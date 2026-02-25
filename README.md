@@ -1,13 +1,46 @@
-# A-World-of-Data: Environment Impacts on Heath
+# A World of Data: How Basic Infrastructure Shapes Life Expectancy
 
-## Important Dates
+This is an interactive data exploration platform built with `D3.js` to analyze global life expectancy and its correlations with basic infrastructure (access to basic sanitation, drinking water, and electricity). This application utilizes a synchronized visualization system to enable analysis across geographic and statistical datasets.
 
-* **Tues Feb 24th 11:59pm**: The code and published application 
-* **Wed Feb 25th**: Presentations for the project
-* **Thu Feb 26th 11:59pm**: The documentation for your project
+[**View the Live Application**](https://how-basic-infrastructure-shapes-life-expectancy.vercel.app/)
 
-## Visualization Goal
+## Project Structure
 
-The goal of the visulations generated for this project are going to try to help the user understand some various environmental impacts on health, specifically life expectancy and happiness. 
+### `prepro/`
 
-**Important**: When choosing the specific datasets there will have to be exercised caution to make sure that these enviornmental factors are as isolated from other things that impact life expectancy and happiness because there are some other major things that can have an impact on the life expectancy and happiness such as if the country is a first world vs third world country etc. 
+The preprocessing directory contains the Python-based data extraction pipeline used to prepare the data from [Our World in Data](https://ourworldindata.org/) for the web-based visualizations.
+
+- **Extraction:** Scripts (`prepro/scripts/pull_csv.py`, `prepro/scripts/pull_json.py`) to fetch remote datasets.
+- **Transformation:** Logic to clean, normalize, and merge disparate CSV files into a unified dataset (`prepro/scripts/join_datasets.py`).
+- **Validation & Logging:** Generates logs of excluded data (seen in `app/data/removed_rows_log.md`) and provides a way to get differences between country names in the CSV statistics and the GeoJSON geometries (`prepro/scripts/find_differences_in_names.py`).
+
+### `app/`
+
+The application directory contains the client-side logic.
+
+- **D3 Components:** Class-based visualization modules (`Scatterplot`, `Histogram`, and `ChoroplethMap`) with synchronized state management.
+- **Interaction Layer:** Event handling including area brushing, click-to-select, hovering, and coordinated tooltips.
+
+## Local Deployment
+
+A local web server is required to view the application locally.
+
+1. **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/MatthewGoldsberry/A-World-of-Data.git
+    cd A-World-of-Data
+    ```
+
+2. **Launch a local server:**
+
+    ```bash
+    # Using Python
+    python -m http.server
+    
+    # Or use the VS Code Live Server extension
+    ```
+
+3. **Access the UI:**
+
+    Navigate to `http://localhost:8000` in browser.
