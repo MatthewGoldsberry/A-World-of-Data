@@ -102,17 +102,15 @@ class Scatterplot {
         vis.isBrushing = false;
         vis.brush = d3.brush()
             .extent([[0, 0], [vis.width, vis.height]])
-            .on('start', function () {
-                // track when the user is brushing to prevent hovering from calling highlightCountry and potentially unhighlighting countries in brush window
-                vis.isBrushing = true;
-            })
             .on('brush', function ({ selection }) {
                 // while brushing, updated highlighted countries 
                 // does not save to stored selected countries until the user finalizes there selection via release of brush
                 if (selection) vis.brushed(selection);
                 vis.refreshStacking();
+                vis.isBrushing = true;
             })
             .on('end', function ({ selection }) {
+                vis.isBrushing = false;
                 if (!selection) {
                     vis.brushed(null);
                 } else {
@@ -120,7 +118,6 @@ class Scatterplot {
                     vis.brushedEnd(selection);
                     d3.select(this).call(vis.brush.move, null); // note to self: this has to be this to work, cannot be vis
                 }
-                vis.isBrushing = false;
                 vis.refreshStacking();
             });
 
@@ -158,6 +155,9 @@ class Scatterplot {
      */
     renderVis() {
         let vis = this;
+
+        // update the brush
+        vis.brushG.call(vis.brush);
 
         // add circles
         vis.chart.selectAll('.symbol')
@@ -220,9 +220,6 @@ class Scatterplot {
         // force the scatterplot outline on top of grid lines
         vis.xAxisG.select('.domain').raise();
         vis.yAxisG.select('.domain').raise();
-
-        // update the brush
-        vis.brushG.call(vis.brush);
 
         // makes selection persist even when data values are changed
         highlightCountry();
