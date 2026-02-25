@@ -56,9 +56,20 @@ function normalizeClassName(name) {
  * @param {Array<string>} hoveredNames - name of countries that are currently being hovered
  */
 function highlightCountries(hoveredNames = []) {
+    // determine which hovered names actually get to be focussed
+    // only want to highlight the full bin if no countries in that bin are already selected
+    // if some are selected, only focus the intersection to signal that clicking that will result in a deselect
+    const filteredHovers = hoveredNames.filter(name => {
+        // any country already selected will always be focussed
+        if (selectedCountries.includes(name)) return true;
+
+        // if a country is not selected, only focus it if all other countries in that bin are also not selected
+        return !hoveredNames.some(hName => selectedCountries.includes(hName));
+    });
+
     // combine hovered with selectedCountries to ensure everything that needs to get highlighted gets handled below
     // the set allows for an easy method to clean out any duplicate values
-    const namesToFocus = [...new Set([...hoveredNames, ...selectedCountries])].filter(name => name && typeof name === 'string');
+    const namesToFocus = [...new Set([...filteredHovers, ...selectedCountries])].filter(name => name && typeof name === 'string');;
 
     // early exit if there are no hovered elements or selected countries
     if (namesToFocus.length === 0) {
@@ -114,7 +125,7 @@ function unhighlightCountry() {
 }
 
 /**
- * Brushing Implementation 
+ * Selecting Implementation 
  */
 
 /**
@@ -125,11 +136,11 @@ function unhighlightCountry() {
  * @param {*} countryNames - list of country names
  */
 function handleSelections(countryNames) {
-    // if all of the countries already are in selectedCountries remove them
-    const alreadySelected = countryNames.every(name => selectedCountries.includes(name));
+    // if some countries in countryNames already are in selectedCountries remove them
+    const alreadySelected = countryNames.some(name => selectedCountries.includes(name));
     if (alreadySelected) {
         selectedCountries = selectedCountries.filter(name => !countryNames.includes(name));
-    } else { // since countries are not all 
+    } else { // if no countries are selected, select all in countryNames
         countryNames.forEach(name => {
             if (!selectedCountries.includes(name)) { selectedCountries.push(name); }
         })
